@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{float}
+\usepackage{amsmath}
 
 \author{ Karol Auguštin }
 \nralbumu{ 249476 }
@@ -33,6 +34,73 @@
 \tableofcontents
 %\addcontentsline{toc}{chapter}{Cel pracy}
 \chapter{Wstęp}
+Tu będzie wstęp, który napiszę na końcu.
+
+\chapter{Zastosowanie wykrywania potencjału P300}
+\section{Diagnostyka medyczna}
+Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a także uszkodzeń mózgu w wyniku urazów. \citep{zgorzalewicz2000} Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we wszystkich przypadkach opisanych w literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec ,,częsty'', przeplatany z bodźcem ,,żadkim'', mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca ,,żadkiego'' dla każdej z elektrod i analiza takiego wyniku wykonywana przez lekarza. W związku z tym, że najistotniejszym elementem badania diagnostycznego jest kształt oraz czas wystąpienia reakcji, jak równierz umiejscowienie jej na powierzchni czaszki niemożliwe jest zastosowanie jakichkolwiek metod analizy sygnału, czy to filtrów przestrzennych, czy innych metod mających na celu jego uwidocznienie.
+\section{Interfejsy mózg -- komputer}
+Najbardziej obiecującym zastosowaniem zautomatyzowanej analizy sygnału EEG są obecnie interfejsy BCI (brain -- computer interface) mające na celu komunikcję użytkownika z komputerem jedynie lub głównie poprzez analizę sygnału zbieranego z czaszki użytkownika przy zmniejszonej potrzebie stosowania powszechnych urządzeń do komunikacji człowieka z komputerem takich jak klawiatura czy myszka. Aby umożliwić wykożystanie potencjału P300 w takim zastosowaniu potrzebny jest złożony z wielu elementów aparat matematyczno -- informatyczny, za pomocą którego w zautomatyzowany sposób możnaby rejestrować wystąpienie pojedyńczego lub niewielkiej ilości potencjałów P300 w sposób nie wymagający udziału przeszkolonej osoby. Jako, że w takiej sytuacji istotny jest nie kształt czy opóźnienie załamka P300, a samo jego wystąpienie w reakcji na określony bodziec dostępne są wszystkie metody cyfrowej analizy sygnałów, o ile okażą się skuteczne.
+\subsection{Dostęp do informacji}
+Od lat 80 mamy do czynienia z dynamicznym rozwojem informatyzacji społeczeństwa, nie tylko w warstwie możliwości technicznych, ale przede wszystkim w rozumieniu społecznym. Przez ostatnie trzydzieści lat stopień zastosowania komputerów i urządzeń elektronicznych przez społeczeństwo wzrósł, a co ważniejsze wzrost ten nadal występuje w olbrzymim tempie. Unowocześnianie i ułatwianie ludziom dostępu do komputerów i możliwości jakie ten dostęp umożliwia jest kluczowym zadanie producentów i projektantów wszystkich firm produkujących użądzenia elektroniczne przeznaczone dla masowego odbiorcy. Sposób komunikacji użytkowników z komputerem ewoluował na przestrzeni lat. Od klawiatury podłączonej do terminala tekstowego w latach osiemdziesiątych przez wprowadzenie na rynek myszki i interfejsu graficznego przez firmę Apple Computers Inc. w 1984 roku, aż do obecnie znanych i coraz szerzej stosowanych ekranów dotykowych. Historia komunikacji człowieka z urządzeniami elektronicznymi pokazuje jak istotny dla współczesnego świata jest sposób dostępu człowieka do możliwości jakie dają współczesne komputery.
+
+Rozwój urządzeń umożliwiających komunikację ludzi z komputerami opiera się na stosowaniu technologii eliminujących nienaturalnych i zbędnych użądzeń pośredniczących w tejże komunikacji. Najpierw ograniczono rolę klawiatury, na rzecz dużo prostrzej i bardziej naturalnej myszki, żeby w końcu i z niej zrezygnowac na rzecz ekranu obsługiwanego w naturalny dla człowieka sposób -- palcami. Kolejnym krokiem w tej ewolucji jest wyeliminowanie konieczności używania jakiegokolwiek interfejsu na rzecz bezpośredniego połączenia komputera z mózgiem użytkownika.
+
+Rozwój metod rejestracji i analizy sygnału EEG daje nadzieję, że w przyszłości będzie to możliwe i dostępne dla zwykłego użytkownika.
+\subsection{Pomoc osobom niepełnosprawnym}
+Kolejnym aspektem zastosowania systemów BCI w postaci, w jakiej istnieją one dzisiaj jest pomoc osobom niepełnosprawnym, w szczególności sparaliżowanym, pozbawionym możliwości kontaktu ze światem zewnętrznym. Urządzenia BCI Appliance tworzone i rozwijane na wydziale Fizyki Uniwersytetu Warszawskiego już dzisiaj dają taką możliwość. Opierając się na znanych mechanizmach działania mózgu umożliwiają wprowadzanie informacji do komputera jedynie za pomocą koncentracji uwagi. Jednym z paradygmatów, na którm opiera się ten system jest właśnie rejestracja i analiza potencjału P300.
+\chapter{Charakterystyka i metody analizy sygnałow}
+Potencjał P300 występujący w sygnale EEG w reakcji na oczekiwany przez pacjenta bodziec ma złożoną charakterystykę, czyniąc go trudnym do automatycznej detekcji. Podstawowym problemem jest mała amplituda zjawiska na tle innych aktywności mózgu widocznych w sygnale EEG. Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z występowaniem interesującego nas zjawiska (szum) ulega uśrednieniu do zera, a interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do zastosowania w systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Mała moc potencjału P300, a również jego umiejscowienie na osi częstotliwości w jej początkowym zakresie bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować ilość niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywnosci mózgu, nie związanych z bodźcem podawanym pacjentowi.
+
+Celem wszystkich metod analizy sygnałow jest umożliwienie wykrycia wystąpienia załamka P300 przy użyciu możliwie najmniejszej ilości powtórzeń bodźca. Stosuje się w tym celu różne metody analizy sygnałów. Zadanie jest tym trudniejsze gdyż charakterystyka odpowiedzi, jak również czas jej występowania po podaniu bodźca różni się pomiędzy pacjentami. Do najprostszych metod stosowanych w pierwszej kolejności należą przede wszystkim filtrowanie dolnoprzepustowe oraz uśrednianie sygnału z wielu realizacji eksperymentu.
+
+\section{Filtry przestrzenne}
+Zastosowanie filtrów przestrzennych opiera się na przemnożeniu macierzy sygnału przez macierz filtra tak, aby wynikowa macierz zawierająca w każdym wierszu liniową kombinację wszystkich kanałów przedstawiała sygnał, w którym wykrycie załamka P300 jest łatwiejsze niż w oryginalnym sygnale. 
+
+\subsection{Dane wyjściowe}
+Aby zaobserwować efekty uzyskane za pomocą różnych filtrów przestrzennych przedstawie dane zarejestrowane podczas eksperymentów bez użycia żadnego z nich. Macierz przejścia dla takich danych jest macierzą, która na diagonali ma wartości 1 oraz 0 w pozostałych polach.
+Dla trzech kanałów taka macierz ma postać:
+\[
+M =
+\begin{bmatrix}
+  $1$ & $0$ & $0$ \\
+  $0$ & $1$ & $0$ \\
+  $0$ & $0$ & $1$ 
+\end{bmatrix}
+\]
+Na poniższych wykresach widać załamek P300 na tle sygnału referencyjnego dla róznych ilości powtórzeń:
+
+RYSUNKI
+
+
+\subsection{Laplacjan filter (?)}
+Filtr Laplacjan (?) uzyskuje się poprzez odjęcie od każdego kanału średniej z kanałów go otaczających. Ma to na celu eliminacje szumu, którego hipotetyczne źródło umieszczone jest w nieskończonej odległości od miejsca rejestracji każdego kanału oraz eliminacje wpływu sygnału z kanałów sąsiednich. Sygnał pozostający w każdym kanale po zastosowaniu takiego filtra powinien odwzorowywać aktywność EEG zachodzącą bezpośrednio w miejscu umieszczenia elektrody, eliminując czasem mocniejszą aktywność z innych obszarów czaszki.
+Macierz przejścia w przypadku zastosowania takiego filtra jest ściśle związana z lokalizacją elektrod na głowie pacjenta.
+Przykładowa macierz przejścia ma postać:
+\[
+M =
+\begin{bmatrix}
+  $1$ & $-1/2$ & $-1/2$ & $0$ \\
+  $-1/2$ & $1$ & $-1/2$ & $0$ \\
+  $0$ & $-1/2$ & $1$ & $-1/2$ \\
+  $0$ & $-1/2$ & $-1/2$ & $1$ 
+\end{bmatrix}
+\]
+Sygnał uzyskany przez zastosowanie filtra przedstawiają poniższe wykresy:
+
+RYSUNKI
+
+
+
+\subsection{Common Spatial Patterns}
+Common Spatial Patterns (CSP) jest dyskryminacyjnym algorytmem pozyskującym przestrzenny filtr $W$ z danych $X$, tak że różnica wariancji fitrowanego sygnału $X_{CSP} = X \cdot W$ dla dwóch klas jest maksymalna. Osiągane jest to poprzez rozwiązanie równania:
+\begin{equation}
+\Sigma _2 W = (\Sigma _1 + \Sigma _2 )W \Delta
+\end{equation}
+gdzie $\Sigma_1$ i $\Sigma_2$ są kowariancjami macierzy sygnałów z klas 1 oraz 2. Każda kolumna $W$ jest filtrem przestrzennym $w_i$ odpowiadającym wartości własnej $\delta _i$ w macierzy $\Delta$, wartości $i = 1,2,3 \ldots N_c$ odpowiadają numerom kanałów sygnału oryginalnego. \citep{sannelli2011}
+Na wykresach poniżej przedstawione zostały przebiegi załamka P300 (klasa target) na tle sygnału referencyjnego (klasa non-target) dla róznej ilości uśrednionych powtórzeń. Kanały zostały posegregowane malejąco względem różnicy kowariancji pomiędzy klasami:
+
+RYSUNKI
 
 
 
