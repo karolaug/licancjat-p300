@@ -96,18 +96,18 @@ Common Spatial Patterns (CSP) jest dyskryminacyjnym algorytmem pozyskującym prz
 gdzie $\Sigma_1$ i $\Sigma_2$ są kowariancjami macierzy sygnałów z klas 1 oraz 2. Każda kolumna $W$ jest filtrem przestrzennym $w_i$ odpowiadającym wartości własnej $\delta _i$ w macierzy $\Delta$, wartości $i = 1,2,3 \ldots N_c$ odpowiadają numerom kanałów sygnału oryginalnego. \citep{sannelli2011}
 
 \section{Miara jakości}
-%w tej sekcji napisz:
-%- że jakość wstępnej analizy sygnałów jest tym lepsz im bardziej zbiór cech wydobytych z sygnału target jest rózny od zbioru cech wydobytych z sygnału non-target
-%- proponowane cechy to wartość korelacji ze średnią po wszystkich powtórzeniach target
-%-wariancja sygnału 
-%- nie pamiętam czy jezcze coś wymyśliliśmy
-%- co to jest odległość Mahalanobisa
-%- że można ją zastosować do mierzenia odległości pomiędzy dwoma zbiorami punktów w przestrzeni wielowymiarowej
+Jakość wstępnej analizy sygnałów jest tym lepsza im zbiór cech wydobytych z sygnału zarejestrowanego jako target jest różny od cech sygnału non-target będącego szumem z punktu widzenia analizowanego zagadnienia. Jako, że zjawisko analizowane, takie jak wystąpienie potencjału P300, powtarzane jest w każdej realizacji sygnału target, natomiast pozostałe zjawiska będące szumem nie są skorelowane z bodźcem, uśrednienie wielu powtórzeń rejestracji pożądanego zjawiska powoduje wyeliminowanie sygnału pochodzącego od innych zjawisk na rzecz sygnału pochodzącego od zjawiska oczekiwanego.
 
+Jako, że czas wystąpienia potencjału P300 po podaniu bodźca jest powtarzalny dla danego pacjenta, proponowaną miarą jakości jest maksymalna wartość funkcji korelacji w otoczeniu zera pomiędzy średnią z sygnałów target uzyskanych podczas sesji kalibracyjnej oraz sygnałem poddawanym analizie. Nieco mniejszą skutecznością wykazuje się warość wariancji otrzymanego sygnału w porównaniu z wariancją średniej z sygnałów target.
 
-
+Miarą skuteczności danej metody jest odległość Mahalanobisa, zwana ważoną odległością euklidesową, którą można zastosować do mierzenia odległości pomiędzy dwoma zbiorami punktów w przestrzeni wielowymiarowej.
 
 \chapter{Dane}
+Dane do analizy opisanych metod były zbierane podczas dwóch sesji kalibracyjnych, w których osoba badana patrzyła się na jeden z ośmiu sekwencyjnie zapalających się kwadratów. Dzięki temu zebrane dane opatrzone są informacją, czy należą do grupy target, w przypadku zapalenia się obserwowanego pola, czy non-target w pozostałych przypadkach. Metodologia przyjęta podczas wykonywania analizy opiera się na wykożystaniu jednej sesji do pozyskania macierzy CSP oraz drugiej zawierającej zaprezentowane dane.
+
+W obu przypadkach zastosowano próbkowanie z częstotliwością 128Hz, gdyż częstotliwość potencjału P300 jest niewielka, a nadmiarowe próbkowanie zwiększa poziom szumu oraz znacznie wydłuża czas obliczeń. Zarejestrowano dane z 24 kanałów rozmieszczonych w systemie 10-20.
+
+
 
 \chapter{Wyniki}
 
