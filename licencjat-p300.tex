@@ -36,12 +36,10 @@
 \end{abstract}
 \tableofcontents
 %\addcontentsline{toc}{chapter}{Cel pracy}
-\chapter{Wstęp}
-Tu będzie wstęp, który napiszę na końcu.
 
-\chapter{Zastosowanie wykrywania potencjału P300}
+\chapter{Wstęp}
 \section{Diagnostyka medyczna}
-Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a także uszkodzeń mózgu w wyniku urazów. \citep{zgorzalewicz2000} Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we wszystkich przypadkach opisanych w literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec ,,częsty'', przeplatany z bodźcem ,,żadkim'', mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca ,,żadkiego'' dla każdej z elektrod i analiza takiego wyniku wykonywana przez lekarza. W związku z tym, że najistotniejszym elementem badania diagnostycznego jest kształt oraz czas wystąpienia reakcji, jak równierz umiejscowienie jej na powierzchni czaszki jedynymi metodami analizy sygnałow możliwymi do zastosowania są filtrowanie pasmowe i uśrednianie, nstomiast niemożliwe jest użycie filtrów przestrzennych, czy innych metod mających na celu lepsze uwidocznienie potencjału.
+Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a także uszkodzeń mózgu w wyniku urazów \citep{zgorzalewicz2000}. Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we wszystkich przypadkach opisanych w literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec ,,częsty'', przeplatany z bodźcem ,,żadkim'', mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca ,,żadkiego'' dla każdej z elektrod i analiza takiego wyniku wykonywana przez lekarza. W związku z tym, że najistotniejszym elementem badania diagnostycznego jest kształt oraz czas wystąpienia reakcji, jak równierz umiejscowienie jej na powierzchni czaszki jedynymi metodami analizy sygnałow możliwymi do zastosowania są filtrowanie pasmowe i uśrednianie, nstomiast niemożliwe jest użycie filtrów przestrzennych, czy innych metod mających na celu lepsze uwidocznienie potencjału.
 \section{Interfejsy mózg -- komputer}
 Najbardziej obiecującym zastosowaniem zautomatyzowanej analizy sygnału EEG są obecnie interfejsy mózg-komputer (brain-computer interface -- BCI) mające na celu umożliwienie komunikcji użytkownika z komputerem bez użycia mięśni jedynie lub głównie poprzez analizę sygnału EEG zbieranego z czaszki użytkownika. Aby umożliwić wykożystanie potencjału P300 w takim zastosowaniu potrzebny jest złożony z wielu elementów aparat matematyczno -- informatyczny, za pomocą którego w zautomatyzowany sposób możnaby rejestrować wystąpienie pojedyńczego lub niewielkiej ilości potencjałów P300 w sposób nie wymagający udziału przeszkolonej osoby. Jako, że w takiej sytuacji istotny jest nie kształt czy opóźnienie załamka P300, a samo jego wystąpienie w reakcji na określony bodziec dostępne są wszystkie metody cyfrowej analizy sygnałów, o ile okażą się skuteczne.
 \subsection{Dostęp do informacji}
@@ -52,13 +50,23 @@ Rozwój urządzeń umożliwiających komunikację ludzi z komputerami opiera si�
 Rozwój metod rejestracji i analizy sygnału EEG daje nadzieję, że w przyszłości będzie to możliwe i dostępne dla zwykłego użytkownika.
 \subsection{Pomoc osobom niepełnosprawnym}
 Kolejnym aspektem zastosowania systemów BCI w postaci, w jakiej istnieją one dzisiaj jest pomoc osobom niepełnosprawnym, w szczególności sparaliżowanym, pozbawionym możliwości kontaktu ze światem zewnętrznym. Urządzenia BCI Appliance tworzone i rozwijane na wydziale Fizyki Uniwersytetu Warszawskiego już dzisiaj dają taką możliwość. Opierając się na znanych mechanizmach działania mózgu umożliwiają wprowadzanie informacji do komputera jedynie za pomocą koncentracji uwagi. Jednym z paradygmatów, na którm opiera się ten system jest właśnie rejestracja i analiza potencjału P300.
+
+\section{Cel pracy}
+%I będzie w nim napisane że zbadasz i zaprezentujesz jak zastosowanie różnych filtrów przestrzennych wpływa na możliwość wykrywania wystąpienia P300, co przyczynia się do konstrukcji lepszych BCI opartych o P300.
+
+Celem pracy jest zbadanie oraz zaprezentowanie jak zastosowanie filtrów przestrzennych wpływa na możliwość wykrywania występowania potencjału P300. Przyczynia się to do konstrukcji lepszych BCI opartych o paradygmat P300.
+
+
+
 \chapter{Metodologia}
-Potencjał P300 występujący w sygnale EEG w reakcji na oczekiwany przez pacjenta bodziec ma złożoną charakterystykę, czyniąc go trudnym do automatycznej detekcji. Podstawowym problemem jest mała amplituda zjawiska na tle innych aktywności mózgu widocznych w sygnale EEG. Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z występowaniem interesującego nas zjawiska (szum) ulega uśrednieniu do zera, a interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do zastosowania w systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Niski stosunek sygnału do szumu dla potencjału P300 bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować ilość niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywnosci mózgu, nie związanych z bodźcem podawanym pacjentowi.
+Potencjał P300 występujący w sygnale EEG w reakcji na oczekiwany przez pacjenta bodziec ma złożoną charakterystykę, czyniąc go trudnym do automatycznej detekcji. Podstawowym problemem jest mała amplituda zjawiska na tle innych aktywności mózgu widocznych w sygnale EEG. Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z występowaniem interesującego nas zjawiska jest modelowana jako szum nieskorelowany o średniej zero, zatem ulega uśrednieniu do zera, a interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do zastosowania w systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Niski stosunek sygnału do szumu dla potencjału P300 bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować ilość niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywnosci mózgu, nie związanych z bodźcem podawanym pacjentowi.
 
 Zadanie jest tym trudniejsze gdyż charakterystyka odpowiedzi, jak również czas jej występowania po podaniu bodźca różni się pomiędzy pacjentami. Do najprostszych metod stosowanych w pierwszej kolejności należą przede wszystkim filtrowanie dolnoprzepustowe oraz uśrednianie sygnału z wielu realizacji eksperymentu.
 
+Bardziej zaawansowanymi metodami jest zaprojektowanie odpowiednich filtrów przestrzennych, maących na celu poprawę stosunku sygnału do szumu kożystając z różnicy w rozkładzie przestrzennym szumu i interesującej nas aktywności. Przykłady takich filtrów zostaną przedstawione w kolejnych paragrafach.
+
+
 \section{Filtry przestrzenne}
-Zastosowanie filtrów przestrzennych opiera się na przemnożeniu macierzy sygnału $X$ przez macierz filtra $M$ tak, aby wynikowa macierz zawierająca w każdym wierszu liniową kombinację wszystkich kanałów przedstawiała sygnał, w którym wykrycie załamka P300 jest łatwiejsze niż w oryginalnym sygnale. 
 Filtry przestrzenne poprawiają stosunek sygnału do szumu wykorzystując różny rozkład przestrzenny składowej będącej sygnałem i składowej będącej szumem, czyli sygnałem nie zawierającym składowych istotnych z punktu widzenia badanego zagadnienia.
 Filltr przestrzenny może być zrealizowany w postaci macierzy $M$ takiej, że: 
 Y = M*X
@@ -66,7 +74,7 @@ gdzie: $X$ oznacza sygnał mierzony, natomiast $Y$ sygnał filtrowany.
 
 
 \subsection{Filtr tożsamościowy}
-Aby zaobserwować efekty uzyskane za pomocą różnych filtrów przestrzennych przedstawie dane zarejestrowane podczas eksperymentów bez użycia żadnego z nich. Macierz przejścia dla takich danych jest macierzą, która na diagonali ma wartości 1 oraz 0 w pozostałych polach.
+Aby zaobserwować efekty uzyskane za pomocą różnych filtrów przestrzennych przedstawię dane zarejestrowane podczas eksperymentów bez użycia żadnego z nich. Macierz przejścia dla takich danych jest macierzą, która na diagonali ma wartości 1 oraz 0 w pozostałych polach.
 Dla trzech kanałów taka macierz ma postać:
 \[
 M =
@@ -80,18 +88,12 @@ M =
 \subsection{Transformata Hjorta}
 Transformacja Hjortha jest numerycznym przybliżeniem transformaty Laplace'a czyli drugiej pochodnej przestrzennej. Uzyskuje się ją poprzez odjęcie od każdego kanału średniej z kanałów go otaczających. Ma on na celu eliminację składowej wspólnej dla transformowanych kanałów, czyli pochodzącej od źródeł odległych. Sygnał pozostający w każdym kanale po zastosowaniu takiego filtra powinien odwzorowywać aktywność EEG zachodzącą bezpośrednio w miejscu umieszczenia elektrody, eliminując czasem mocniejszą aktywność z innych obszarów czaszki.
 Macierz przejścia w przypadku zastosowania takiego filtra jest ściśle związana z lokalizacją elektrod na głowie pacjenta.
-Przykładowa macierz przejścia ma postać:
-\[
-M =
-\begin{bmatrix}
-  $1$ & $-1/2$ & $-1/2$ & $0$ \\
-  $-1/2$ & $1$ & $-1/2$ & $0$ \\
-  $0$ & $-1/2$ & $1$ & $-1/2$ \\
-  $0$ & $-1/2$ & $-1/2$ & $1$ 
-\end{bmatrix}
-\]
+Przykładowa macierz przejścia ma postać przykładowo w systemie EEG 10-20 dla elektrody Cz ma on postać:
+\begin{equation}
+Cz' = Cz - 1/4(Fz+C4+Pz+C4)
+\end{equation}
 
-\subsection{Common Spatial Patterns}
+\subsection{Wspólny wzorzec przestrzenny}
 Common Spatial Patterns (CSP) jest dyskryminacyjnym algorytmem pozyskującym przestrzenny filtr $W$ z danych $X$, tak że różnica wariancji fitrowanego sygnału $X_{CSP} = X \cdot W$ dla dwóch klas jest maksymalna. Osiągane jest to poprzez jednoczesną diagonalizację macierzy kowariancji:
 \begin{equation}
 \Sigma _2 W = (\Sigma _1 + \Sigma _2 )W \Delta
