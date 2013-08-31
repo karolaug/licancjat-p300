@@ -13,8 +13,12 @@
 \usepackage{url}
 \usepackage{float}
 \usepackage{amsmath}
-%\usepackage{antpolt}
-
+\usepackage{antpolt}
+\usepackage[T1]{fontenc}
+\usepackage[draft]{todonotes}
+%\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{chngcntr}
 
 
 \author{ Karol Auguštin }
@@ -25,9 +29,12 @@
 \opiekun{dr hab. Jarosława Żygierewicza \\ Zakład Fizyki Biomedycznej \\ Instytut Fizyki Doświadczalnej \\ Uniwersytet Warszawski}
 \dziedzina{13.2}
 \specjalnosc{Neuroinformatyka}
-\date{Warszawa, Wrzesień 2012}
+\date{Warszawa, Wrzesień 2013}
 \keywords{P300, filtry przestrzenne, interfejsy mózg -- komputer, CSP} 
-\bibliographystyle{elsart-harv}
+
+%\bibliographystyle{elsart-harv}
+\bibliographystyle{unsrt}
+
 \begin{document}
 \let\cleardoublepage\clearpage
 \maketitle
@@ -39,17 +46,21 @@
 
 \chapter{Wstęp}
 \section{Diagnostyka medyczna}
-Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w~diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a~także uszkodzeń mózgu w~wyniku urazów \citep{zgorzalewicz2000}. Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we~wszystkich przypadkach opisanych w~literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec ,,częsty'' (ang. target), przeplatany z bodźcem ,,rzadkim'' (ang. non-target), mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca ,,rzadkiego'' dla każdej z~elektrod i~analiza takiego wyniku wykonywana przez lekarza. W związku z~tym, że~najistotniejszym elementem badania diagnostycznego jest kształt oraz czas wystąpienia reakcji, jak równierz umiejscowienie jej na~powierzchni czaszki jedynymi metodami analizy sygnałów możliwymi do~zastosowania są~filtrowanie pasmowe i~uśrednianie, nstomiast niemożliwe jest użycie filtrów przestrzennych, czy innych metod mających na celu lepsze uwidocznienie potencjału.
+\todo[inline]{dopisać co to sa potencjaly, orientacja w czasie i przestrzeni}
+Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w~diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a~także uszkodzeń mózgu w~wyniku urazów \cite{zgorzalewicz2000}.\todo[inline]{nie wiem czy dać ten format cytacji czy ten z nawiasami (Autor, rok)} Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we~wszystkich przypadkach opisanych w~literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec standardowy (ang. target), przeplatany z bodźcem celowym (ang. non-target), mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca celowego dla każdej z~elektrod i~analiza takiego wyniku wykonywana przez lekarza. 
+W związku z~tym, że~najistotniejszym elementem badania diagnostycznego jest amplituda oraz czas wystąpienia reakcji, jak również umiejscowienie jej na~powierzchni czaszki \todo[noline]{cite} jedynymi powszechnie stosowanymi metodami analizy sygnałów są~filtrowanie pasmowe i~uśrednianie, natomiast nie jest praktykowane użycie filtrów przestrzennych, czy innych metod mających na celu lepsze uwidocznienie potencjału.
 \section{Interfejsy mózg -- komputer}
-Najbardziej obiecującym zastosowaniem zautomatyzowanej analizy sygnału EEG są~obecnie interfejsy mózg-komputer (brain-computer interface -- BCI) mające na~celu umożliwienie komunikcji użytkownika z~komputerem bez użycia mięśni jedynie lub głównie poprzez analizę sygnału EEG zbieranego z czaszki użytkownika. Aby umożliwić wykorzystanie potencjału P300 w~takim zastosowaniu potrzebny jest złożony z~wielu elementów aparat matematyczno -- informatyczny, za~pomocą którego w~zautomatyzowany sposób możnaby rejestrować wystąpienie pojedynczego lub niewielkiej ilości realizacji potencjałów P300 w~sposób nie~wymagający udziału przeszkolonej osoby. Jako, że~w~takiej sytuacji istotny jest nie kształt czy opóźnienie załamka P300, a~samo jego wystąpienie w~reakcji na~określony bodziec dostępne są~wszystkie metody cyfrowej analizy sygnałów, o~ile okażą się~skuteczne.
+Najbardziej obiecującym zastosowaniem zautomatyzowanej analizy sygnału EEG są~obecnie interfejsy mózg-komputer (brain-computer interface -- BCI) mające na~celu umożliwienie komunikacji użytkownika z~komputerem bez użycia mięśni jedynie lub głównie poprzez analizę sygnału EEG zbieranego z powierzchni czaszki użytkownika. Aby umożliwić wykorzystanie potencjału P300 w~takim zastosowaniu potrzebny jest złożony z~wielu elementów aparat matematyczno -- informatyczny, za~pomocą którego w~zautomatyzowany sposób można by rejestrować wystąpienie w pojedynczej lub niewielkiej ilości realizacji potencjałów P300 w~sposób nie~wymagający udziału przeszkolonej osoby. Jako, że~w~takiej sytuacji istotny jest nie kształt czy opóźnienie załamka P300, a~samo jego wystąpienie w~reakcji na~określony bodziec dostępne są~wszystkie metody cyfrowej analizy sygnałów, o~ile okażą się~skuteczne.
 \subsection{Dostęp do informacji}
 Od lat osiemdziesiątych mamy do~czynienia z~dynamicznym rozwojem informatyzacji społeczeństwa, nie~tylko w~warstwie możliwości technicznych, ale~przede wszystkim w~rozumieniu społecznym. Przez ostatnie trzydzieści lat stopień zastosowania komputerów i~urządzeń elektronicznych przez społeczeństwo wzrósł, a~co~ważniejsze wzrost ten nadal występuje w~olbrzymim tempie. Unowocześnianie i~ułatwianie ludziom dostępu do~komputerów i~możliwości jakie ten dostęp umożliwia jest kluczowym zadanie producentów i~projektantów wszystkich firm produkujących urządzenia elektroniczne przeznaczone dla masowego odbiorcy. Sposób komunikacji użytkowników z~komputerem ewoluował na przestrzeni lat. Od klawiatury podłączonej do~terminala tekstowego w~latach osiemdziesiątych przez wprowadzenie na~rynek myszki i~interfejsu graficznego przez firmę Apple Computers Inc. w~1984 roku, aż~do~obecnie znanych i~coraz szerzej stosowanych ekranów dotykowych. Historia komunikacji człowieka z urządzeniami elektronicznymi pokazuje jak istotny dla współczesnego świata jest sposób dostępu człowieka do możliwości jakie dają współczesne komputery.
 
-Rozwój urządzeń umożliwiających komunikację ludzi z~komputerami opiera się na~stosowaniu technologii eliminujących nienaturalnych i~zbędnych urządzeń pośredniczących w tejże komunikacji. Najpierw ograniczono rolę klawiatury, na~rzecz dużo prostrzej i~bardziej naturalnej myszki, żeby w końcu i~z~niej zrezygnowac na rzecz ekranu obsługiwanego w naturalny dla człowieka sposób -- palcami. Kolejnym krokiem w~tej ewolucji jest wyeliminowanie konieczności używania jakiegokolwiek urządzenia obsługiwanego za pomocą mięśni na rzecz bezpośredniego połączenia komputera z~mózgiem użytkownika.
+Rozwój urządzeń umożliwiających komunikację ludzi z~komputerami opiera się na~stosowaniu technologii eliminujących nienaturalnych i~zbędnych urządzeń pośredniczących w tejże komunikacji. Najpierw ograniczono rolę klawiatury, na~rzecz dużo prostszej i~bardziej naturalnej myszki, żeby w końcu i~z~niej zrezygnować na rzecz ekranu obsługiwanego w naturalny dla człowieka sposób -- palcami. Kolejnym krokiem w~tej ewolucji jest wyeliminowanie konieczności używania jakiegokolwiek urządzenia obsługiwanego za pomocą mięśni na rzecz bezpośredniego połączenia komputera z~mózgiem użytkownika.
 
-Rozwój metod rejestracji i~analizy sygnału EEG daje nadzieję, że w~przyszłości będzie to możliwe i~dostępne dla zwykłego użytkownika.
+%Rozwój metod rejestracji i~analizy sygnału EEG daje nadzieję, że w~przyszłości będzie to możliwe i~dostępne dla zwykłego użytkownika.
 \subsection{Pomoc osobom niepełnosprawnym}
-Kolejnym aspektem zastosowania systemów BCI w~postaci, w~jakiej istnieją one dzisiaj jest pomoc osobom niepełnosprawnym, w~szczególności sparaliżowanym, pozbawionym możliwości kontaktu ze~światem zewnętrznym. Urządzenia BCI Appliance tworzone i~rozwijane na~wydziale Fizyki Uniwersytetu Warszawskiego już dzisiaj dają taką możliwość. Opierając się na znanych mechanizmach działania mózgu umożliwiają wprowadzanie informacji do komputera jedynie za pomocą analizy sygnału EEG związanego z koncentracją uwagi na określonych bodźcach. Jednym z paradygmatów, na którm opiera się ten system jest właśnie rejestracja i~analiza potencjału P300.
+Kolejnym aspektem zastosowania systemów BCI w~postaci, w~jakiej istnieją one dzisiaj jest pomoc osobom niepełnosprawnym, w~szczególności sparaliżowanym, pozbawionym możliwości kontaktu ze~światem zewnętrznym za pośrednictwem mięśni. Urządzenia BCI Appliance tworzone i~rozwijane na~wydziale Fizyki Uniwersytetu Warszawskiego już dzisiaj dają taką możliwość.
+\todo[inline]{Inne bci + cite}
+Opierając się na znanych mechanizmach działania mózgu umożliwiają wprowadzanie informacji do komputera jedynie za pomocą analizy sygnału EEG związanego z koncentracją uwagi na określonych bodźcach. Jednym z paradygmatów, na którym opiera się ten system jest właśnie rejestracja i~analiza potencjału P300.
 
 \section{Cel pracy}
 %I będzie w nim napisane że zbadasz i zaprezentujesz jak zastosowanie różnych filtrów przestrzennych wpływa na możliwość wykrywania wystąpienia P300, co przyczynia się do konstrukcji lepszych BCI opartych o P300.
@@ -59,9 +70,11 @@ Celem pracy jest zbadanie oraz zaprezentowanie jak~zastosowanie filtrów przestr
 
 
 \chapter{Metodologia}
-Potencjał P300 występujący w~sygnale EEG w~reakcji na~oczekiwany przez pacjenta bodziec ma złożoną charakterystykę, czyniąc go trudnym do automatycznej detekcji. Podstawowym problemem jest mała amplituda zjawiska na tle innych aktywności mózgu widocznych w sygnale EEG. Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z~występowaniem interesującego nas zjawiska jest modelowana jako szum nieskorelowany o~średniej zero, zatem ulega uśrednieniu do zera, a~interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do~zastosowania w~systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Niski stosunek sygnału do szumu dla potencjału P300 bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować ilość niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywnosci mózgu, nie związanych z bodźcem podawanym pacjentowi.
+Potencjał P300 występujący w~sygnale EEG w~reakcji na~oczekiwany przez pacjenta bodziec ma złożoną charakterystykę, czyniąc go trudnym do automatycznej detekcji. Podstawowym problemem jest mała amplituda zjawiska na tle innych aktywności mózgu widocznych w sygnale EEG oraz duża zmienność osobnicza i zależność od wielu czynników zewnętrznych. \todo{cite + jakie}
+Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z~występowaniem interesującego nas zjawiska jest modelowana jako szum nieskorelowany o~średniej zero, zatem ulega uśrednieniu do zera, a~interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do~zastosowania w~systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Niski stosunek sygnału do szumu dla potencjału P300 bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować ilość niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywności mózgu, nie związanych z bodźcem podawanym pacjentowi.\todo{cite do prac o p300-bci}
 
-Zadanie jest tym trudniejsze gdyż charakterystyka odpowiedzi, jak również czas jej występowania po podaniu bodźca różni się pomiędzy pacjentami. Do najprostszych metod stosowanych w pierwszej kolejności należą przede wszystkim filtrowanie dolnoprzepustowe oraz uśrednianie sygnału z~wielu realizacji eksperymentu.
+%Zadanie jest tym trudniejsze gdyż charakterystyka odpowiedzi, jak również czas jej występowania po podaniu bodźca różni się pomiędzy pacjentami. 
+Do najprostszych metod stosowanych w pierwszej kolejności należą przede wszystkim filtrowanie dolnoprzepustowe. \todo{dlaczego?}
 
 Bardziej zaawansowanymi metodami jest zaprojektowanie odpowiednich filtrów przestrzennych, mających na celu poprawę stosunku sygnału do szumu korzystając z~różnicy w rozkładzie przestrzennym szumu i~interesującej nas aktywności. Przykłady takich filtrów zostaną przedstawione w~kolejnych paragrafach.
 
@@ -86,15 +99,15 @@ M =
 \]
 
 \subsection{Transformata Hjorta}
-Transformacja Hjortha jest numerycznym przybliżeniem transformaty Laplace'a czyli drugiej pochodnej przestrzennej. Uzyskuje się ją poprzez odjęcie od każdego kanału średniej z kanałów go otaczających. Ma on na celu eliminację składowej wspólnej dla transformowanych kanałów, czyli pochodzącej od~źródeł odległych. Sygnał pozostający w~każdym kanale po zastosowaniu takiego filtra powinien odwzorowywać aktywność EEG zachodzącą bezpośrednio w~miejscu umieszczenia elektrody, eliminując czasem mocniejszą aktywność z~innych obszarów czaszki.
+Transformacja Hjortha \citep{hjorth1975} jest numerycznym przybliżeniem transformaty Laplace'a czyli drugiej pochodnej przestrzennej. Uzyskuje się ją poprzez odjęcie od każdego kanału średniej z kanałów go otaczających. Ma on na celu eliminację składowej wspólnej dla transformowanych kanałów, czyli pochodzącej od~źródeł odległych. Sygnał pozostający w~każdym kanale po zastosowaniu takiego filtra powinien odwzorowywać aktywność EEG zachodzącą bezpośrednio w~miejscu umieszczenia elektrody, eliminując czasem mocniejszą aktywność z~innych obszarów czaszki.
 Macierz przejścia w~przypadku zastosowania takiego filtra jest ściśle związana z~lokalizacją elektrod na głowie pacjenta.
 Transformacja ta ma postać przykładowo w~systemie EEG 10-20 dla elektrody $Cz$ ma~on~postać:
 \begin{equation}
-Cz' = Cz - 1/4(Fz+C4+Pz+C4)
+V'_{Cz} = V_{Cz} - 1/4(V_{Fz}+V_{C4}+V_{Pz}+V_{C4})
 \end{equation}
 
 \subsection{Wspólny wzorzec przestrzenny}
-Wspólny wzorzec przestrzenny (ang. Common Spatail Patterns, CSP) jest dyskryminacyjnym algorytmem pozyskującym przestrzenny filtr $W$ z~danych $X$, tak że różnica wariancji fitrowanego sygnału \mbox{$X_{CSP} = X \cdot W$} dla dwóch klas jest maksymalna. Osiągane jest to poprzez jednoczesną diagonalizację macierzy kowariancji:
+Wspólny wzorzec przestrzenny (ang. Common Spatail Patterns, CSP) \cite{koles1990} jest dyskryminacyjnym algorytmem pozyskującym przestrzenny filtr $W$ z~danych $X$, tak że różnica wariancji filtrowanego sygnału \mbox{$X_{CSP} = X \cdot W$} dla dwóch klas jest maksymalna w pewnym kanale $X_{CSP}$. Osiągane jest to poprzez jednoczesną diagonalizację macierzy kowariancji:\todo{cite}
 \begin{equation}
 \Sigma _2 W = (\Sigma _1 + \Sigma _2 )W \Delta
 \end{equation}
@@ -107,7 +120,7 @@ Jakość wstępnej analizy sygnałów jest tym lepsza im~zbiór cech wydobytych 
 %Miarą skuteczności danej metody jest odległość Mahalanobisa, zwana ważoną odległością euklidesową, którą można zastosować do mierzenia odległości pomiędzy dwoma zbiorami punktów~w przestrzeni wielowymiarowej.
 
 Zgodnie z powszechnie używanym modelem potencjału wywołanego (sygnał deterministyczny + szum niezależny) pierwszą proponowaną cechą jest maksymalna wartość funkcji korelacji w otoczeniu zera pomiędzy średnią z sygnałów target uzyskanych podczas sesji kalibracyjnej oraz sygnałem poddawanym analizie.
-Drugą proponowaną cechą jest warość wariancji otrzymanego sygnału w porównaniu z wariancją średniej z sygnałów target.
+Drugą proponowaną cechą jest wartość wariancji otrzymanego sygnału w porównaniu z wariancją średniej z sygnałów target. \todo[inline]{Poprawić, wyjaśnić}
 
 Możliwa do osiągnięcia jakość klasyfikacji nieznanych próbek jako elementów różnych klas jest tym większa im większa jest separacja rozkładów cech dla tych klas. Jako miarę separacji rozkładów w przestrzeni wielowymiarowej można zastosować odległość Mahalanobisa. Wyraża się ona wzorem:
 
@@ -118,7 +131,7 @@ d_{m}{(x,y)}=\sqrt{(x-y)C^{-1}(x-y)^T}
 
 Dla sytuacji jednowymiarowej odległość ta redukuje się do miary $t$, co ma intuicyjną interpretację mierzenia odległości w jednostkach odchylenia standardowego:
 \begin{equation}
-t = \frac{(x - mu)}{\mbox{std}(x)}
+t = \frac{x-\mu}{s_x}
 \end{equation}
 
 
@@ -130,14 +143,14 @@ Dane do analizy opisanych metod były zbierane podczas sesji kalibracyjnej, w~kt
 
 W obu przypadkach zastosowano próbkowanie z~częstotliwością 128Hz. Zarejestrowano dane z~20~kanałów rozmieszczonych w~systemie 10-20.
 
-Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału target i 528 realizacji sygnału non-target.
+Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału target i 528 realizacji sygnału non-target. o wszystkich obliczeń został zastosowany wstępny montaż danych względem uśrednionych odprowadzeń usznych A1 oraz A2. 
+%Wynika to z faktu, że procesy zachodzące w mózgu w czasie eksperymentu nie skorelowane z wyświetlaniem bodźca ulegną uśrednieniu praktycznie do zera pozostawiając jedynie sygnały skorelowane z wyświetlaniem bodźca, czyli potencjał P300.
 
-Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uśrednionych ze sobą. W skrajnym przypadku uśrednienie ze sobą kilkunastu powtórzeń target pozwala na zaobserwowanie kształtu potencjału gołym okiem na wykresie. Wynika to z faktu, że procesy zachodzące w mózgu w czasie eksperymentu nie skorelowane z wyświetlaniem bodźca ulegną uśrednieniu praktycznie do zera pozostawiając jedynie sygnały skorelowane z wyświetlaniem bodźca, czyli potencjał P300.
+Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń. Aby zasymulować posiadanie większej liczby danych zastosowana została metoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby unikalnych, uśrednionych przebiegów.
+\todo[inline]{Jak konkretnie u ciebie ten bootstrap wyglądał: z jakich zbiorów losowałeś, po ile powtórzeń i że te wylosowane fragmenty ze sobą uśredniałeś.}
 
-Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń. Aby zasymulować posiadanie większej liczby danych zastosowana została motoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby unikalnych, uśrednionych przebiegów.
-
-Do wszystkich obliczeń został zastosowany wstępny montaż danych względem uśrednionych odprowadzeń usznych A1 oraz A2. 
-
+Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uśrednionych ze sobą. W skrajnym przypadku uśrednienie ze sobą kilkunastu powtórzeń target pozwala na zaobserwowanie kształtu potencjału gołym okiem na wykresie.
+\todo[inline]{zapropnowane w poprzednim rozdziale miary były liczone dla sygnałów uśredniancyh po 2, 3, n realizacjach.}
 
 
 
@@ -162,4 +175,5 @@ Do wszystkich obliczeń został zastosowany wstępny montaż danych względem u�
 
 
 \bibliography{biblio}
+\listoftodos
 \end{document}
