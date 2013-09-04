@@ -47,8 +47,8 @@
 \chapter{Wstęp}
 \section{Diagnostyka medyczna}
 \todo[inline]{dopisać co to sa potencjaly, orientacja w czasie i przestrzeni}
-Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w~diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a~także uszkodzeń mózgu w~wyniku urazów \cite{zgorzalewicz2000}.\todo[inline]{nie wiem czy dać ten format cytacji czy ten z nawiasami (Autor, rok)} Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we~wszystkich przypadkach opisanych w~literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec standardowy (ang. target), przeplatany z bodźcem celowym (ang. non-target), mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca celowego dla każdej z~elektrod i~analiza takiego wyniku wykonywana przez lekarza. 
-W związku z~tym, że~najistotniejszym elementem badania diagnostycznego jest amplituda oraz czas wystąpienia reakcji, jak również umiejscowienie jej na~powierzchni czaszki \todo[noline]{cite} jedynymi powszechnie stosowanymi metodami analizy sygnałów są~filtrowanie pasmowe i~uśrednianie, natomiast nie jest praktykowane użycie filtrów przestrzennych, czy innych metod mających na celu lepsze uwidocznienie potencjału.
+Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w~diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a~także uszkodzeń mózgu w~wyniku urazów \cite{zgorzalewicz2000}. Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we~wszystkich przypadkach opisanych w~literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec standardowy (ang. target), przeplatany z bodźcem celowym (ang. non-target), mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca celowego dla każdej z~elektrod i~analiza takiego wyniku wykonywana przez lekarza. 
+W związku z~tym, że~najistotniejszym elementem badania diagnostycznego jest amplituda oraz czas wystąpienia reakcji (latencja), jak również umiejscowienie jej na~powierzchni czaszki \todo[noline]{cite} jedynymi powszechnie stosowanymi metodami analizy sygnałów są~filtrowanie pasmowe i~uśrednianie, natomiast nie jest praktykowane użycie filtrów przestrzennych, czy innych metod mających na celu lepsze uwidocznienie potencjału.
 \section{Interfejsy mózg -- komputer}
 Najbardziej obiecującym zastosowaniem zautomatyzowanej analizy sygnału EEG są~obecnie interfejsy mózg-komputer (brain-computer interface -- BCI) mające na~celu umożliwienie komunikacji użytkownika z~komputerem bez użycia mięśni jedynie lub głównie poprzez analizę sygnału EEG zbieranego z powierzchni czaszki użytkownika. Aby umożliwić wykorzystanie potencjału P300 w~takim zastosowaniu potrzebny jest złożony z~wielu elementów aparat matematyczno -- informatyczny, za~pomocą którego w~zautomatyzowany sposób można by rejestrować wystąpienie w pojedynczej lub niewielkiej ilości realizacji potencjałów P300 w~sposób nie~wymagający udziału przeszkolonej osoby. Jako, że~w~takiej sytuacji istotny jest nie kształt czy opóźnienie załamka P300, a~samo jego wystąpienie w~reakcji na~określony bodziec dostępne są~wszystkie metody cyfrowej analizy sygnałów, o~ile okażą się~skuteczne.
 \subsection{Dostęp do informacji}
@@ -111,14 +111,13 @@ gdzie $\Sigma_1$ i $\Sigma_2$ są kowariancjami macierzy sygnałów z~klas~1~ora
 
 \section{Miara jakości}
 \label{miara}
-Jakość wstępnej analizy sygnałów jest tym lepsza im~zbiór cech wydobytych z~sygnału zarejestrowanego jako target jest różny od cech sygnału non-target będącego szumem z~punktu widzenia analizowanego zagadnienia.
+Jakość wstępnej analizy sygnałów jest tym lepsza im~zbiór cech wydobytych z~sygnału zarejestrowanego jako target jest bardziej różny od cech sygnału non-target będącego szumem z~punktu widzenia analizowanego zagadnienia.
 %Jako, że zjawisko analizowane, takie jak wystąpienie potencjału P300, powtarzane jest w~każdej realizacji sygnału target, natomiast pozostałe zjawiska będące szumem nie są skorelowane z~bodźcem, uśrednienie wielu powtórzeń rejestracji pożądanego zjawiska powoduje wyeliminowanie sygnału pochodzącego od innych zjawisk na rzecz sygnału pochodzącego od zjawiska oczekiwanego.
 %Jako, że czas wystąpienia potencjału P300 po podaniu bodźca jest powtarzalny dla danego pacjenta, proponowaną miarą jakości jest maksymalna wartość funkcji korelacji w otoczeniu zera pomiędzy średnią z~wszystkich sygnałów target uzyskanych podczas sesji kalibracyjnej oraz sygnałem poddawanym analizie.
 %Miarą skuteczności danej metody jest odległość Mahalanobisa, zwana ważoną odległością euklidesową, którą można zastosować do mierzenia odległości pomiędzy dwoma zbiorami punktów~w przestrzeni wielowymiarowej.
 
 Zgodnie z powszechnie używanym modelem potencjału wywołanego (sygnał deterministyczny + szum niezależny) proponowaną cechą  różnicującą jest maksymalna wartość funkcji korelacji w otoczeniu zera pomiędzy średnią z sygnałów target uzyskanych podczas sesji kalibracyjnej oraz sygnałem poddawanym analizie.
 %Drugą proponowaną cechą jest wartość wariancji otrzymanego sygnału w porównaniu z wariancją średniej z sygnałów target. 
-\todo[inline]{Zdecydowałem się na jedną cechę ponieważ każda kolejna nie daje znacząco lepszych rezultatów}
 
 Możliwa do osiągnięcia jakość klasyfikacji nieznanych próbek jako elementów różnych klas jest tym większa im większa jest separacja rozkładów cech dla tych klas. Jako miarę separacji rozkładów w przestrzeni wielowymiarowej można zastosować odległość Mahalanobisa. Wyraża się ona wzorem:
 
@@ -136,23 +135,23 @@ W celu osiągnięcia jak najlepszych rezultatów cechy były obliczane dla dwóc
 \chapter{Dane}
 Dane do analizy opisanych metod były zbierane podczas sesji kalibracyjnej, w~której osoba badana patrzyła się na jeden z~ośmiu losowo zapalających się kwadratów. Dzięki temu zebrane dane opatrzone są~informacją, czy należą do~grupy target, w~przypadku zapalenia się obserwowanego pola, czy non-target w~pozostałych przypadkach.
 
-Do obliczeń sygnał został pocięty na odcinki od $0,2$ sekundy przed sygnałem do $0,5$ \todo{wywalić przerwę po przecinku} sekundy po sygnale.
-
 W obu przypadkach zastosowano próbkowanie z~częstotliwością 128Hz. Zarejestrowano dane z~20~kanałów rozmieszczonych w~systemie 10-20.
 
-Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału target i 528 realizacji sygnału non-target. o wszystkich obliczeń został zastosowany wstępny montaż danych względem uśrednionych odprowadzeń usznych A1 oraz A2. 
+Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału target i 528 realizacji sygnału non-target. Do wszystkich obliczeń został zastosowany wstępny montaż danych względem uśrednionych odprowadzeń usznych A1 oraz A2. Do obliczeń sygnał został pocięty na odcinki od $0,2$ sekundy przed bodźcem do $0,5$ \todo{wywalić przerwę po przecinku} sekundy po bodźcu.
 %Wynika to z faktu, że procesy zachodzące w mózgu w czasie eksperymentu nie skorelowane z wyświetlaniem bodźca ulegną uśrednieniu praktycznie do zera pozostawiając jedynie sygnały skorelowane z wyświetlaniem bodźca, czyli potencjał P300.
 
-Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń potrzebnych do jego wykrycia. Aby zasymulować posiadanie większej liczby danych zastosowana została metoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby unikalnych, uśrednionych przebiegów. Z puli sygnałów target i sygnałów non-target losowane było bez zwracania po 2,3,4,5 realizacji a następnie były one uśredniane. Losowanie przeprowadzono po 100 razy dla sygnałów target i non-target. Wynikowe sygnały zostały zaprezentowane w dziale \ref{wyniki}.
-%\todo[inline]{Jak konkretnie u ciebie ten bootstrap wyglądał: z jakich zbiorów losowałeś, po ile powtórzeń i że te wylosowane fragmenty ze sobą uśredniałeś.}
 
-Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uśrednionych ze sobą. W skrajnym przypadku uśrednienie ze sobą kilku powtórzeń target pozwala na zaobserwowanie kształtu potencjału gołym okiem na wykresie.
-%\todo[inline]{zapropnowane w poprzednim rozdziale miary były liczone dla sygnałów uśredniancyh po 2, 3, n realizacjach.}
+
 
 
 \chapter{Wyniki}
 \label{wyniki}
-\section{Porównanie sygnałów}
+
+Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń potrzebnych do jego wykrycia. Aby zasymulować posiadanie większej liczby danych zastosowana została metoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby unikalnych, uśrednionych przebiegów. Z puli sygnałów target i sygnałów non-target losowane było bez zwracania po 2,3,4,5 realizacji a następnie były one uśredniane. Losowanie przeprowadzono po 100 razy dla sygnałów target i non-target. Wynikowe sygnały zostały zaprezentowane w dziale \ref{wyniki}.
+
+Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uśrednionych ze sobą. W skrajnym przypadku uśrednienie ze sobą kilku powtórzeń target pozwala na zaobserwowanie kształtu potencjału gołym okiem na wykresie.
+
+\section{Wybór kanałów}
 \label{sygnaly}
 \subsection{Filtr tożsamościowy}
 
