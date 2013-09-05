@@ -103,7 +103,7 @@ V'_{Cz} = V_{Cz} - 1/4(V_{Fz}+V_{C4}+V_{Pz}+V_{C4})
 \end{equation}
 
 \subsection{Wspólny wzorzec przestrzenny}
-Wspólny wzorzec przestrzenny (ang. Common Spatail Patterns, CSP) \cite{koles1990} jest dyskryminacyjnym algorytmem pozyskującym przestrzenny filtr $W$ z~danych $X$, tak że różnica wariancji filtrowanego sygnału \mbox{$X_{CSP} = X \cdot W$} dla dwóch klas jest maksymalna w pewnym kanale $X_{CSP}$. Osiągane jest to poprzez jednoczesną diagonalizację macierzy kowariancji:\todo{cite}
+Wspólny wzorzec przestrzenny (ang. Common Spatail Patterns, CSP) \citep{koles1990} jest dyskryminacyjnym algorytmem pozyskującym przestrzenny filtr $W$ z~danych $X$, tak że różnica wariancji filtrowanego sygnału \mbox{$X_{CSP} = X \cdot W$} dla dwóch klas jest maksymalna w pewnym kanale $X_{CSP}$. Osiągane jest to poprzez jednoczesną diagonalizację macierzy kowariancji:\todo{cite}
 \begin{equation}
 \Sigma _2 W = (\Sigma _1 + \Sigma _2 )W \Delta
 \end{equation}
@@ -147,7 +147,10 @@ Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału 
 \chapter{Wyniki}
 \label{wyniki}
 
-Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń potrzebnych do jego wykrycia. Aby zasymulować posiadanie większej liczby danych zastosowana została metoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby unikalnych, uśrednionych przebiegów. Z puli sygnałów target i sygnałów non-target losowane było bez zwracania po 2,3,4,5 realizacji a następnie były one uśredniane. Losowanie przeprowadzono po 100 razy dla sygnałów target i non-target. Wynikowe sygnały zostały zaprezentowane w dziale \ref{wyniki}.
+Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń potrzebnych do jego wykrycia. Aby zasymulować posiadanie większej liczby danych zastosowana została metoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby uśrednionych przebiegów. Z puli sygnałów target i non-target losowane było po 10 realizacji. Pozostałe realizacje zostały uśrednione. \todo{aaaa}
+
+
+%Z puli sygnałów target i sygnałów non-target losowane było bez zwracania po 2,3,4,5 realizacji a następnie były one uśredniane. Losowanie przeprowadzono po 100 razy dla sygnałów target i non-target. Wynikowe sygnały zostały zaprezentowane w dziale \ref{wyniki}.
 
 Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uśrednionych ze sobą. W skrajnym przypadku uśrednienie ze sobą kilku powtórzeń target pozwala na zaobserwowanie kształtu potencjału gołym okiem na wykresie.
 
@@ -156,120 +159,76 @@ Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uś
 \subsection{Filtr tożsamościowy}
 
 Na kolejnych wykresach przedstawiono macierze uśrednionego sygnału dla wszystkich zarejestrowanych kanałów dla dwóch, czterech oraz dziesięciu powtórzeń.
-\todo[inline]{obrazki mam wygenerowane dla 2-10 powtórzeń, więc mogę tu pokazać dowolną kombinację}
-
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_toz_2.png}
-\caption{Macierz sygnałów uśrednionych po dwóch powtórzeniach dla filtru tożsamościowego.}
-\label{maciez_toz_2}
+\includegraphics[scale=0.35, trim=10mm 25mm 10mm 25mm, clip=True]{pics/macierz_toz.png}
+\caption{Macierz sygnałów uśrednionych dla filtru tożsamościowego.}
+\label{maciez_toz}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_toz_4.png}
-\caption{Macierz sygnałów uśrednionych po czterech powtórzeniach dla filtru tożsamościowego.}
-\label{maciez_toz_4}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_toz_10.png}
-\caption{Macierz sygnałów uśrednionych po dziesięciu powtórzeniach dla filtru tożsamościowego.}
-\label{maciez_toz_10}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 15mm, clip=True]{pics/sygnal_toz.png}
+\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla filtru tożsamościowego.}
+\label{sygnal_toz}
 \end{figure}
 
 \subsection{Transformata Hjorta}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_hjorth_2.png}
-\caption{Macierz sygnałów uśrednionych po dwóch powtórzeniach dla transformaty Hjorta.}
-\label{maciez_hjorth_2}
+\includegraphics[scale=0.35, trim=10mm 25mm 10mm 25mm, clip=True]{pics/macierz_hjorth.png}
+\caption{Macierz sygnałów uśrednionych dla transformaty Hjorta.}
+\label{maciez_hjorth}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_hjorth_4.png}
-\caption{Macierz sygnałów uśrednionych po czterech powtórzeniach dla transformaty Hjorta.}
-\label{maciez_hjorth_4}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 15mm, clip=True]{pics/sygnal_hjorth.png}
+\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla transformaty Hjorta.}
+\label{sygnal_hjorth}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_hjorth_10.png}
-\caption{Macierz sygnałów uśrednionych po dziesięciu powtórzeniach dla transformaty Hjorta.}
-\label{maciez_hjorth_10}
-\end{figure}
 
 \subsection{Wspólny wzorzec przestrzenny}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_csp_2.png}
-\caption{Macierz sygnałów uśrednionych po dwóch powtórzeniach dla CSP.}
-\label{maciez_csp_2}
+\includegraphics[scale=0.35, trim=10mm 25mm 10mm 25mm, clip=True]{pics/macierz_csp.png}
+\caption{Macierz sygnałów uśrednionych dla CSP.}
+\label{maciez_csp}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_csp_4.png}
-\caption{Macierz sygnałów uśrednionych po czterech powtórzeniach dla CSP.}
-\label{maciez_csp_4}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 15mm, clip=True]{pics/sygnal_csp.png}
+\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla CSP.}
+\label{sygnal_csp}
 \end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/macierz_csp_10.png}
-\caption{Macierz sygnałów uśrednionych po dziesięciu powtórzeniach dla CSP.}
-\label{maciez_csp_10}
-\end{figure}
-
 
 \section{Porównanie cech}
-Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odległość Mahalanobisa (rozdział \ref{miara}). Do porównania wyników dla każdego filtru przestrzennego wykorzystywana był wynik z dwóch kanałów, które najlepiej wypadły. \todo[inline]{poprawić}
+Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odległość Mahalanobisa (rozdział \ref{miara}). Do porównania wyników dla każdego filtru przestrzennego wykorzystywany był wynik z dwóch kanałów, które najlepiej wypadły. \todo{poprawić}
 
 \subsection{Filtr tożsamościowy}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_toz_2.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy dwóch uśrednionych realizacjach.}
-\label{sygnal_toz_2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_toz_2.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_toz_2.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy dwóch uśrednionych realizacjach.}
 \label{cecha_toz_2}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_toz_4.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy czterech uśrednionych realizacjach.}
-\label{sygnal_toz_4}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_toz_4.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_toz_4.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy czterech uśrednionych realizacjach.}
 \label{cecha_toz_4}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_toz_10.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy dziesięciu uśrednionych realizacjach.}
-\label{sygnal_toz_10}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_toz_10.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_toz_10.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy dziesięciu uśrednionych realizacjach.}
 \label{cecha_toz_10}
 \end{figure}
@@ -280,42 +239,21 @@ Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odleg�
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_hjorth_2.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski dla dwóch najlepszych kanałów przy dwóch uśrednionych realizacjach.}
-\label{sygnal_hjorth_2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_hjorth_2.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_hjorth_2.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy dwóch uśrednionych realizacjach.}
 \label{cecha_hjorth_2}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_hjorth_4.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy czterech uśrednionych realizacjach.}
-\label{sygnal_hjorth_4}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_hjorth_4.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_hjorth_4.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy czterech uśrednionych realizacjach.}
 \label{cecha_hjorth_4}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_hjorth_10.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy dziesięciu uśrednionych realizacjach.}
-\label{sygnal_hjorth_10}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_hjorth_10.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_hjorth_10.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy dziesięciu uśrednionych realizacjach.}
 \label{cecha_hjorth_10}
 \end{figure}
@@ -325,65 +263,35 @@ Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odleg�
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_csp_2.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy dwóch uśrednionych realizacjach.}
-\label{sygnal_csp_2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_csp_2.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_csp_2.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy dwóch uśrednionych realizacjach.}
 \label{cecha_csp_2}
 \end{figure}
 
-
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_csp_4.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy czterech uśrednionych realizacjach.}
-\label{sygnal_csp_4}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_csp_4.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_csp_4.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy czterech uśrednionych realizacjach.}
 \label{cecha_csp_4}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/sygnal_csp_10.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów przy dziesięciu uśrednionych realizacjach.}
-\label{sygnal_csp_10}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.55, trim=0mm 0mm 0mm 0mm, clip=True]{pics/cecha_csp_10.png}
+\includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_csp_10.png}
 \caption{Rozkład cech dla dwóch najlepszych kanałów dla sygnałów target (czerwony) i non-target (niebieski) przy dziesięciu uśrednionych realizacjach.}
 \label{cecha_csp_10}
 \end{figure}
 
-
 \section{Odległość Mahalanobisa}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.37, trim=57mm 30mm 30mm 15mm, clip=True]{pics/mahalanobis.png}
+\includegraphics[scale=0.6, trim=10mm 15mm 10mm 18mm, clip=True]{pics/mahalanobis.png}
 \caption{Zależność odległości Mahalanobisa od liczby uśrednianych realizacji dla każdego prezentowanego filtru.}
 \label{mahalanobis_pic}
 \end{figure}
 
-\todo[inline]{tu komentarz, że wszystko zgodnie z oczekiwaniami, najlepsze csp, potem hjorth i tozsamosciowy}
-
 
 \chapter{Dyskusja i Wnioski}
-\todo[inline]{Mam problem, bo Machalanobis robi dziwne rzeczy. Bierze kanały niekoniecznie optycznie najlepsze. W CSP wymusiłem, żeby brał 1 i 0. Ale w reszcie bierze to co daje najlepszy wynik i czasami są to kanały nie intuicyjne. Tak jak na rysunku \ref{sygnal_toz_2} i \ref{cecha_toz_2} wziął sobie O1 i O2, w których nic nie ma. Mam mu wymusić branie jakiś dwóch konkretnych kanałów? Mam wszystko oskryptowane, więc to kwestia podmienienia zmiennej na numer kanału.
-
-Drugim problemem jaki mam to transformata Hjorta. Wszystko działa tak jak oczekuje, wyniki są lepsze, niż surowego sygnału (rys. \ref{mahalanobis_pic}), ale optycznie to dziwnie wygląda.
-
-Jutro będę na Hożej od 10 jakoś i zostaje dopóki nie skończę. Mam nadzieję, że to już ostatnia prosta.}
 
 
 \bibliography{biblio}
