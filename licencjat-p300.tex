@@ -45,8 +45,13 @@
 %\addcontentsline{toc}{chapter}{Cel pracy}
 
 \chapter{Wstęp}
+\section{Potencjały wywołane}
+\label{potencjaly}
+Potencjały wywołane (ERP) są to zmiany w potencjale elektrycznym mózgu rejestrowane najczęściej na powierzchni czaszki. Występują one w odpowiedzi na bodziec podawany pacjentowi. W niniejszej pracy analizowany będzie przebieg potencjału P300, który jest potencjałem wzrokowym. Ponadto występują również potencjały słuchowe oraz czuciowe. 
+Z uwagi na niską amplitudę ERP występowanie ich można zauważyć uśredniając wiele przebiegów (realizacji) minimalizując składową sygnału pochodzącą od procesów nie związanych z badanym potencjałem.
+Badany potencjał P300 występuje około 300ms po podaniu bodźca i charakteryzuje się przebiegiem w niskich częstotliwościach. 
+
 \section{Diagnostyka medyczna}
-\todo[inline]{dopisać co to sa potencjaly, orientacja w czasie i przestrzeni}
 Istnieje wiele udokumentowanych zastosowań detekcji potencjału P300 w~diagnostyce medycznej chorób układu nerwowego, zaburzeń psychicznych, a~także uszkodzeń mózgu w~wyniku urazów \cite{zgorzalewicz2000}. Opierają się one głównie na analizie wielu cech rejestrowanego potencjału takich jak: latencja względem bodźca, kształt, oraz miejsce występowania na powierzchni czaszki. Praktycznie we~wszystkich przypadkach opisanych w~literaturze sposób badania jest identyczny, jeśli porównywany jest od strony analizy sygnału. Pacjentowi podawany jest wielokrotnie bodziec standardowy (ang. target), przeplatany z bodźcem celowym (ang. non-target), mającym wygenerować u pacjenta potencjał P300. Następnie przeprowadzane jest uśrednianie wystąpień bodźca celowego dla każdej z~elektrod i~analiza takiego wyniku wykonywana przez lekarza. 
 W związku z~tym, że~najistotniejszym elementem badania diagnostycznego jest amplituda oraz czas wystąpienia reakcji (latencja), jak również umiejscowienie jej na~powierzchni czaszki \todo[noline]{cite} jedynymi powszechnie stosowanymi metodami analizy sygnałów są~filtrowanie pasmowe i~uśrednianie, natomiast nie jest praktykowane użycie filtrów przestrzennych, czy innych metod mających na celu lepsze uwidocznienie potencjału.
 \section{Interfejsy mózg -- komputer}
@@ -72,7 +77,7 @@ Potencjał P300 występujący w~sygnale EEG w~reakcji na~oczekiwany przez pacjen
 Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z~występowaniem interesującego nas zjawiska jest modelowana jako szum nieskorelowany o~średniej zero, zatem ulega uśrednieniu do zera, a~interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do~zastosowania w~systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Niski stosunek sygnału do szumu dla potencjału P300 bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować ilość niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywności mózgu, nie związanych z bodźcem podawanym pacjentowi.\todo{cite do prac o p300-bci}
 
 %Zadanie jest tym trudniejsze gdyż charakterystyka odpowiedzi, jak również czas jej występowania po podaniu bodźca różni się pomiędzy pacjentami. 
-Do najprostszych metod stosowanych w pierwszej kolejności należą przede wszystkim filtrowanie dolnoprzepustowe. \todo{tu dopiszę}
+Do najprostszych metod stosowanych w pierwszej kolejności należą przede wszystkim filtrowanie dolnoprzepustowe.
 
 Bardziej zaawansowanymi metodami jest zaprojektowanie odpowiednich filtrów przestrzennych, mających na celu poprawę stosunku sygnału do szumu korzystając z~różnicy w rozkładzie przestrzennym szumu i~interesującej nas aktywności. Przykłady takich filtrów zostaną przedstawione w~kolejnych paragrafach.
 
@@ -130,35 +135,35 @@ Dla sytuacji jednowymiarowej odległość ta redukuje się do miary $t$, co ma i
 t = \frac{x-\mu}{s_x}
 \end{equation}
 
-W celu osiągnięcia jak najlepszych rezultatów cechy były obliczane dla dwóch kanałów, dla których wynik osiągał najwyższą wartość.
+W celu osiągnięcia jak najlepszych rezultatów cechy były obliczane dla dwóch kanałów, w których różnica w uśrednionych przebiegach sygnałów target i non-target była największa.
 
 \chapter{Dane}
 Dane do analizy opisanych metod były zbierane podczas sesji kalibracyjnej, w~której osoba badana patrzyła się na jeden z~ośmiu losowo zapalających się kwadratów. Dzięki temu zebrane dane opatrzone są~informacją, czy należą do~grupy target, w~przypadku zapalenia się obserwowanego pola, czy non-target w~pozostałych przypadkach.
 
 W obu przypadkach zastosowano próbkowanie z~częstotliwością 128Hz. Zarejestrowano dane z~20~kanałów rozmieszczonych w~systemie 10-20.
 
-Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału target i 528 realizacji sygnału non-target. Do wszystkich obliczeń został zastosowany wstępny montaż danych względem uśrednionych odprowadzeń usznych A1 oraz A2. Do obliczeń sygnał został pocięty na odcinki od $0,2$ sekundy przed bodźcem do $0,5$ \todo{wywalić przerwę po przecinku} sekundy po bodźcu.
+Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału target i 528 realizacji sygnału non-target. Do wszystkich obliczeń został zastosowany wstępny montaż danych względem uśrednionych odprowadzeń usznych A1 oraz A2. Do obliczeń sygnał został pocięty na odcinki od $0{,}2$ sekundy przed bodźcem do $0{,}5$ sekundy po bodźcu. Ostatnim etapem przygotowania sygnału było zastosowanie filtru dolnoprzepustowego Butterwortha drugiego rzędu o częstotliwości odcięcia 25Hz. W celu zasymulowania działania algorytmu w urządzeniu BCI filtrowanie przeprowadzono dla każdego przebiegu oddzielnie już po jego pocięciu na poszczególne realizacje.
 %Wynika to z faktu, że procesy zachodzące w mózgu w czasie eksperymentu nie skorelowane z wyświetlaniem bodźca ulegną uśrednieniu praktycznie do zera pozostawiając jedynie sygnały skorelowane z wyświetlaniem bodźca, czyli potencjał P300.
-
-
-
-
 
 \chapter{Wyniki}
 \label{wyniki}
 
-Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń potrzebnych do jego wykrycia. Aby zasymulować posiadanie większej liczby danych zastosowana została metoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby uśrednionych przebiegów. Z puli sygnałów target i non-target losowane było po 10 realizacji. Pozostałe realizacje zostały uśrednione. \todo{aaaa}
+%Niestety pomimo zastosowania filtrów przestrzennych nie jest możliwe pewne wykrycie potencjału P300 w sygnale po jednym powtórzeniu bodźca. Możemy jedynie minimalizować ilość powtórzeń potrzebnych do jego wykrycia. Aby zasymulować posiadanie większej liczby danych zastosowana została metoda bootstrap polegająca na losowym uśrednianiu ze sobą przebiegów target w celu zwiększenia liczby uśrednionych przebiegów. Z puli sygnałów target i non-target losowane było po 10 realizacji. Pozostałe realizacje zostały uśrednione.
 
-
-%Z puli sygnałów target i sygnałów non-target losowane było bez zwracania po 2,3,4,5 realizacji a następnie były one uśredniane. Losowanie przeprowadzono po 100 razy dla sygnałów target i non-target. Wynikowe sygnały zostały zaprezentowane w dziale \ref{wyniki}.
-
-Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uśrednionych ze sobą. W skrajnym przypadku uśrednienie ze sobą kilku powtórzeń target pozwala na zaobserwowanie kształtu potencjału gołym okiem na wykresie.
+%Potencjał P300 staje się tym lepiej widoczny im więcej realizacji zostaje uśrednionych ze sobą. W skrajnym przypadku uśrednienie ze sobą kilku powtórzeń target pozwala na zaobserwowanie kształtu potencjału gołym okiem na wykresie.
 
 \section{Wybór kanałów}
 \label{sygnaly}
+
+Pierwszym etapem analizy danych był wybór dwóch kanałów, w których jest najlepiej widoczna różnica pomiędzy przebiegami sygnałów target i non-target dla każdego filtru przestrzennego. 
+
+Na kolejnych wykresach przedstawiono macierze uśrednionych sygnałów target i non-target dla wszystkich zarejestrowanych przebiegów. Dla każdego badanego filtru przestrzennego wybrano dwa kanały w których różnica pomiędzy przebiegami target i non-target jest największa.
+
+
 \subsection{Filtr tożsamościowy}
 
-Na kolejnych wykresach przedstawiono macierze uśrednionego sygnału dla wszystkich zarejestrowanych kanałów dla dwóch, czterech oraz dziesięciu powtórzeń.
+Na rysunku \ref{maciez_toz} przedstawiono macierz uśrednionych sygnałów dla przebiegów target (czerwony) i non-target (niebieski). Do dalszej analizy wybrano kanały Fz i Cz. Wszystkie przebiegi target i non-target dla tych kanałów przedstawiono na rysunku \ref{sygnal_toz}.
+
 
 \begin{figure}[H]
 \centering
@@ -175,6 +180,8 @@ Na kolejnych wykresach przedstawiono macierze uśrednionego sygnału dla wszystk
 \end{figure}
 
 \subsection{Transformata Hjorta}
+
+Na rysunku \ref{maciez_hjorth} przedstawiono macierz uśrednionych sygnałów dla przebiegów target (czerwony) i non-target (niebieski). Dla transformaty Hjorta do analizy wybrano kanały T5 oraz Pz. Wszystkie przebiegi target i non-target dla tych kanałów przedstawiono na rysunku \ref{sygnal_hjorth}.
 
 \begin{figure}[H]
 \centering
@@ -193,6 +200,9 @@ Na kolejnych wykresach przedstawiono macierze uśrednionego sygnału dla wszystk
 
 \subsection{Wspólny wzorzec przestrzenny}
 
+Po zastosowaniu CSP dla macierzy kanałów ich pierwotne nazwy tracą swoje zastosowanie ze względu na przemnożenie każdego z nich przez macierz przejścia CSP. Kanały posegregowane są malejąco względem wartości cech rozróżniających przebiegi target od przebiegów non-target i przedstawiono je na rysunku \ref{macierz_csp}. Do analizy wybrano kanały 1 i 2, ich przebiegi zaprezentowano na rysunku \ref{sygnal_csp}
+
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.35, trim=10mm 25mm 10mm 25mm, clip=True]{pics/macierz_csp.png}
@@ -208,9 +218,17 @@ Na kolejnych wykresach przedstawiono macierze uśrednionego sygnału dla wszystk
 \end{figure}
 
 \section{Porównanie cech}
-Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odległość Mahalanobisa (rozdział \ref{miara}). Do porównania wyników dla każdego filtru przestrzennego wykorzystywany był wynik z dwóch kanałów, które najlepiej wypadły. \todo{poprawić}
+\label{porownanie_cech}
+Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odległość Mahalanobisa (rozdział \ref{miara}). Ze względu na niewielką liczbę zarejestrowanych przebiegów dla każdego filtru przestrzennego zastosowano metodę bootstrap. Z obydwu grup (target i non-target) losowano po 10 przebiegów, które uśredniano ze sobą wykorzystując odpowiednio 2, 4, 10 z nich i porównywano z uśrednionymi pozostałymi trialami. Operację za każdym razem powtarzano 100 razy.
+
+W rozdziałach \ref{roz_cecha_toz}, \ref{roz_cecha_hjorth} oraz \ref{roz_cecha_csp} zaprezentowano wyniki działania klasyfikatora dla sygnału, na którym zastosowano kolejno filtry przestrzenne omawiane w pracy.
 
 \subsection{Filtr tożsamościowy}
+\label{roz_cecha_toz}
+Na rysunkach \ref{cecha_toz_2}, \ref{cecha_toz_4}, \ref{cecha_toz_10} zaprezentowano rozkład cech dla sygnałów target (niebieski) i sygnałów non-target (czerwony) dla odpowiednio dwóch, czterech i dziesięciu uśrednionych realizacji.
+
+Zgodnie z oczekiwaniami separacja obydwu zbiorów rośnie wraz ze zwiększaniem się liczby uśrednionych realizacji. Niestety zarówno dla dwóch jak i czterech uśrednionych realizacji nie jest możliwe jednoznaczne oddzielenie zbiorów co przy zastosowaniu tego algorytmu w urządzeniu BCI prowadziłoby do błędnej interpretacji decyzji użytkownika.
+
 
 \begin{figure}[H]
 \centering
@@ -236,6 +254,9 @@ Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odleg�
 
 
 \subsection{Transformata Hjorta}
+\label{roz_cecha_hjorth}
+Podobnie jak w rodziale \ref{roz_cecha_toz} na rysunkach przedstawiony został rozkład cech dla sygnałów target (niebieski) i sygnałów non-target (czerwony) dla odpowiednio dwóch, czterech i dziesięciu uśrednionych realizacji przy zastosowaniu transformaty Hjorta. W tym przypadku w odróżnieniu od filtru tożsamościowego już przy czterech uśrednionych realizacjach zachodzi pełna separacja zbiorów sygnałów target i non-target wykluczająca błędną interpretację decyzji w urządzeniu BCI.
+
 
 \begin{figure}[H]
 \centering
@@ -260,6 +281,8 @@ Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odleg�
 
 
 \subsection{Wspólny wzorzec przestrzenny}
+\label{roz_cecha_csp}
+W przypadku CSP na rysunku \ref{cecha_csp_2} widać, że już przy dwóch uśrednionych przebiegach następuje praktycznie całkowite rozseparowanie zbiorów sygnałów target i non-target. Ponadto dla czterech i dziesięciu uśrednionych realizacji (rys. \ref{cecha_csp_4}, \ref{cecha_csp_10}) separacja zbiorów jest zdecydowanie lepsza niż dla poprzednich filtrów przestrzennych zaprezentowanych w rozdziałach \ref{roz_cecha_toz} i \ref{roz_cecha_hjorth}.
 
 \begin{figure}[H]
 \centering
@@ -283,6 +306,10 @@ Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odleg�
 \end{figure}
 
 \section{Odległość Mahalanobisa}
+Na rysunku \ref{mahalanobis_pic} przedstawiono zależność odległości Mahalanobisa od liczby uśrednionych realizacji dla wszystkich rodzajów omawianych filtrów przestrzennych. Zgodnie z oczekiwaniami oraz widocznymi zależnościami przedstawionymi na wykresach w rozdziale \ref{porownanie_cech} widać, że najlepsze rezultaty osiągnięto dla CSP, gorsze dla transformaty Hjorta, a najgorsze dla filtru tożsamościowego. 
+
+
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6, trim=10mm 15mm 10mm 18mm, clip=True]{pics/mahalanobis.png}
@@ -292,6 +319,11 @@ Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odleg�
 
 
 \chapter{Dyskusja i Wnioski}
+
+Z przedstawionych rezultatów jasno wynika, że zastosowanie filtrów przestrzennych znacząco poprawia wykrywalność potencjału P300 w sygnale EEG. 
+
+
+
 
 
 \bibliography{biblio}
