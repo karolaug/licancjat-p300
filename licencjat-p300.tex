@@ -20,6 +20,7 @@
 \usepackage{booktabs}
 \usepackage{chngcntr}
 \usepackage[font={small,it}]{caption}
+\usepackage[section]{placeins}
 
 
 \author{ Karol Auguštin }
@@ -27,20 +28,21 @@
 \title{ Filtry przestrzenne w detekcji potencjału P300 }
 \tytulang{ Spatial filters in detection of P300 evoked potential }
 \kierunek{Zastosowania fizyki w biologii i medycynie}
-\opiekun{dr hab. Jarosława Żygierewicza \\ Zakład Fizyki Biomedycznej \\ Instytut Fizyki Doświadczalnej \\ Uniwersytet Warszawski}
+\opiekun{dr hab. Jarosława Żygierewicza \\ Zakład Fizyki Biomedycznej \\ Instytut Fizyki Doświadczalnej \\ Wydział Fizyki \\ Uniwersytet Warszawski}
 \dziedzina{13.2 Fizyka}
 \specjalnosc{Neuroinformatyka}
 \date{Warszawa, Wrzesień 2013}
 \keywords{P300, filtry przestrzenne, interfejsy mózg -- komputer, CSP} 
 
 %\bibliographystyle{elsart-harv}
-\bibliographystyle{unsrt}
+%\bibliographystyle{unsrt}
+\bibliographystyle{apalike}
 
 \begin{document}
 \let\cleardoublepage\clearpage
 \maketitle
 \begin{abstract}
-\par Streszczenie \todo{wiem}
+\par W pracy zaprezentowano i przetestowano doświadczalnie zastosowanie filtrów przestrzennych w detekcji wystąpienia potencjału P300 w urządzeniach BCI. Uzyskane rezultaty potwierdzają skuteczność stosowania tych filtrów w algorytmach detekcji potencjałów wywołanych w czasie rzeczywistym.
 \end{abstract}
 \tableofcontents
 
@@ -119,7 +121,7 @@ gdzie $\Sigma_1$ i $\Sigma_2$ są kowariancjami macierzy sygnałów z~klas~1~ora
 \label{miara}
 Jakość wstępnej analizy sygnałów jest tym lepsza im~zbiór cech wydobytych z~sygnału zarejestrowanego jako target jest bardziej różny od cech sygnału non-target będącego szumem z~punktu widzenia analizowanego zagadnienia.
 
-Zgodnie z powszechnie używanym modelem potencjału wywołanego (sygnał deterministyczny + szum niezależny) proponowaną cechą  różnicującą jest maksymalna wartość funkcji korelacji w otoczeniu zera pomiędzy średnią z sygnałów target uzyskanych podczas sesji kalibracyjnej oraz sygnałem poddawanym analizie.
+Zgodnie z powszechnie używanym modelem potencjału wywołanego (sygnał deterministyczny + szum niezależny) proponowaną cechą  różnicującą jest maksymalna wartość funkcji korelacji punkcie zero pomiędzy średnią z sygnałów target uzyskanych podczas sesji kalibracyjnej oraz sygnałem poddawanym analizie.
 
 Możliwa do osiągnięcia jakość klasyfikacji nieznanych próbek jako elementów różnych klas jest tym większa im większa jest separacja rozkładów cech dla tych klas. Jako miarę separacji rozkładów w przestrzeni wielowymiarowej można zastosować odległość Mahalanobisa. Wyraża się ona wzorem:
 
@@ -132,9 +134,14 @@ Dla sytuacji jednowymiarowej odległość ta redukuje się do miary $t$, co ma i
 \begin{equation}
 t = \frac{x-\mu}{s_x}
 \end{equation}
-gdzie: $x$ jest wektorem danych, $\mu$ jest średnią z wektora danych, a $S_xS$ odchyleniem standardowym danych.
+gdzie: $x$ jest wektorem danych, $\mu$ jest średnią z wektora danych, a $S_x$ odchyleniem standardowym danych.
 
 W celu osiągnięcia jak najlepszych rezultatów cechy były obliczane dla dwóch kanałów, w których różnica w uśrednionych przebiegach sygnałów target i non-target była największa.
+
+\section{Oprogramowanie}
+Oprogramowanie wykorzystane do wykonania symulacji i obliczeń zostało w całości napisane w języku Python~2{.}7. Do obliczeń numerycznych użyto pakietów NumPy~1{.}7{.}1 oraz SciPy~0{.}12{.}0 natomiast do wykonania wykresów pakiet Matplotlib~1{.}3{.}0.
+
+Całość kodu zamieszczono w repozytorium systemu kontroli wersji Git i udostępniono na licencji GPL v3 pod adresem: \url{http://git.nimitz.pl/p300-csp.git}. Wersja użyta w tej pracy oznaczona została tagiem o nazwie: licencjat-p300 i ID: c44f40ff280eb4010e93619f72aa605255c237d2 oraz podpisanym kluczem PGP: 2048R/18C35B1E.
 
 \chapter{Dane}
 Dane do analizy opisanych metod były zbierane podczas sesji kalibracyjnej, w~której osoba badana patrzyła się na jeden z~ośmiu losowo zapalających się kwadratów. Dzięki temu zebrane dane opatrzone są~informacją, czy należą do~grupy target, w~przypadku zapalenia się obserwowanego pola, czy non-target w~pozostałych przypadkach.
@@ -144,6 +151,8 @@ W obu przypadkach zastosowano próbkowanie z~częstotliwością 128Hz. Zarejestr
 Podczas użytej do obliczeń sesji kalibracyjnej zebrano 64 realizacje sygnału target i 528 realizacji sygnału non-target. Do wszystkich obliczeń został zastosowany wstępny montaż danych względem uśrednionych odprowadzeń usznych A1 oraz A2. Do obliczeń sygnał został pocięty na odcinki od $0{,}2$ sekundy przed bodźcem do $0{,}5$ sekundy po bodźcu. Ostatnim etapem przygotowania sygnału było zastosowanie filtru dolnoprzepustowego Butterwortha drugiego rzędu o częstotliwości odcięcia 25Hz. W celu zasymulowania działania algorytmu w urządzeniu BCI filtrowanie przeprowadzono dla każdego przebiegu oddzielnie już po jego pocięciu na poszczególne realizacje.
 
 Filtr górnoprzepustowy nie był zastosowany po rejestracji sygnału, natomiast maksymalna zarejestrowana częstotliwość przez wykorzystany w eksperymencie wzmacniacz przy częstotliwości próbkowania 128Hz wynosi 38Hz.
+
+Od każdego analizowanego odcinka sygnału została odjęta składowa stała aby sygnał w tym odcinku był rozpięty wokół zera.
 
 \chapter{Wyniki}
 \label{wyniki}
@@ -162,14 +171,14 @@ Na rysunku \ref{macierz_toz} przedstawiono macierz uśrednionych sygnałów dla 
 \begin{figure}
 \centering
 \includegraphics[scale=0.35, trim=10mm 25mm 10mm 25mm, clip=True]{pics/macierz_toz.png}
-\caption{Macierz sygnałów uśrednionych target (czerwony) i non-target (niebieski) dla filtru tożsamościowego.}
+\caption{Macierz sygnałów uśrednionych target (czerwony) i non-target (niebieski) dla filtru tożsamościowego. Oś odciętych -- potencjał w  $\mu$V, oś rzędnych -- czas w s, zero oznacza wystąpienie bodźca.}
 \label{macierz_toz}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.55, trim=10mm 15mm 10mm 15mm, clip=True]{pics/sygnal_toz.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla filtru tożsamościowego.}
+\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla filtru tożsamościowego. Oś odciętych -- potencjał w  $\mu$V, oś rzędnych -- czas w s, zero oznacza wystąpienie bodźca.}
 \label{sygnal_toz}
 \end{figure}
 
@@ -180,35 +189,37 @@ Na rysunku \ref{macierz_hjorth} przedstawiono macierz uśrednionych sygnałów d
 \begin{figure}
 \centering
 \includegraphics[scale=0.35, trim=10mm 25mm 10mm 25mm, clip=True]{pics/macierz_hjorth.png}
-\caption{Macierz sygnałów uśrednionych target (czerwony) i non-target (niebieski) dla transformaty Hjorta.}
+\caption{Macierz sygnałów uśrednionych target (czerwony) i non-target (niebieski) dla transformaty Hjorta. Oś odciętych -- potencjał w  $\mu$V, oś rzędnych -- czas w s, zero oznacza wystąpienie bodźca.}
 \label{macierz_hjorth}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.55, trim=10mm 15mm 10mm 15mm, clip=True]{pics/sygnal_hjorth.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla transformaty Hjorta.}
+\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla transformaty Hjorta. Oś odciętych -- potencjał w  $\mu$V, oś rzędnych -- czas w s, zero oznacza wystąpienie bodźca.}
 \label{sygnal_hjorth}
 \end{figure}
 
 \subsection{Wspólny wzorzec przestrzenny}
 
-Po zastosowaniu CSP dla macierzy kanałów ich pierwotne nazwy tracą swoje zastosowanie ze względu na przemnożenie każdego z nich przez macierz przejścia CSP. Kanały posegregowane są malejąco względem wartości cech rozróżniających przebiegi target od przebiegów non-target i przedstawiono je na rysunku \ref{macierz_csp}. Do analizy wybrano kanały 1 i 2, ich przebiegi zaprezentowano na rysunku \ref{sygnal_csp}
+Po zastosowaniu CSP dla macierzy kanałów ich pierwotne nazwy tracą swoje zastosowanie ze względu na przemnożenie każdego z nich przez macierz przejścia CSP. Kanały posegregowane są malejąco względem wartości cech rozróżniających przebiegi target od przebiegów non-target i przedstawiono je na rysunku \ref{macierz_csp}. Do analizy wybrano kanały 0 i 1, ich przebiegi zaprezentowano na rysunku \ref{sygnal_csp}.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.35, trim=10mm 25mm 10mm 25mm, clip=True]{pics/macierz_csp.png}
-\caption{Macierz sygnałów uśrednionych target (czerwony) i non-target (niebieski) dla CSP.}
+\caption{Macierz sygnałów uśrednionych target (czerwony) i non-target (niebieski) dla CSP. Oś odciętych -- potencjał w  $\mu$V, oś rzędnych -- czas w s, zero oznacza wystąpienie bodźca.}
 \label{macierz_csp}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.55, trim=10mm 15mm 10mm 15mm, clip=True]{pics/sygnal_csp.png}
-\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla CSP.}
+\caption{Wykres sygnałów target (czerwony) i non-target (niebieski) dla dwóch najlepszych kanałów dla CSP. Oś odciętych -- potencjał w  $\mu$V, oś rzędnych -- czas w s, zero oznacza wystąpienie bodźca.}
 \label{sygnal_csp}
 \end{figure}
 
+
+\FloatBarrier
 \section{Porównanie cech}
 \label{porownanie_cech}
 Dla sygnałów zaprezentowanych w dziale \ref{sygnaly} obliczona została odległość Mahalanobisa (rozdział \ref{miara}). Ze względu na niewielką liczbę zarejestrowanych przebiegów dla każdego filtru przestrzennego zastosowano metodę bootstrap. Z obydwu grup (target i non-target) losowano po 10 przebiegów, które uśredniano ze sobą wykorzystując odpowiednio 2, 4, 10 z nich i porównywano z uśrednionymi pozostałymi realizacjami. Operację za każdym razem powtarzano 100 razy.
@@ -219,7 +230,10 @@ W rozdziałach \ref{roz_cecha_toz}, \ref{roz_cecha_hjorth} oraz \ref{roz_cecha_c
 \label{roz_cecha_toz}
 Na rysunkach \ref{cecha_toz_2}, \ref{cecha_toz_4}, \ref{cecha_toz_10} zaprezentowano rozkład cech dla sygnałów target (niebieski) i sygnałów non-target (czerwony) dla odpowiednio dwóch, czterech i dziesięciu uśrednionych realizacji.
 
-Zgodnie z oczekiwaniami separacja obydwu zbiorów rośnie wraz ze zwiększaniem się liczby uśrednionych realizacji. Niestety zarówno dla dwóch jak i czterech uśrednionych realizacji nie jest możliwe jednoznaczne oddzielenie zbiorów co przy zastosowaniu tego algorytmu w urządzeniu BCI prowadziłoby do błędnej interpretacji decyzji użytkownika.
+Zgodnie z oczekiwaniami separacja obydwu zbiorów rośnie wraz ze zwiększaniem się liczby uśrednionych realizacji. Niestety zarówno dla dwóch jak i czterech uśrednionych realizacji odległość pomiędzy zbiorami target i non-target jest niewielka względem rozrzutu tych zbiorów co przy zastosowaniu tego algorytmu w urządzeniu BCI prowadziłoby do błędnej interpretacji decyzji użytkownika.
+
+
+%nie jest możliwe jednoznaczne oddzielenie zbiorów co przy zastosowaniu tego algorytmu w urządzeniu BCI prowadziłoby do błędnej interpretacji decyzji użytkownika.
 
 \begin{figure}
 \centering
@@ -244,7 +258,7 @@ Zgodnie z oczekiwaniami separacja obydwu zbiorów rośnie wraz ze zwiększaniem 
 
 \subsection{Transformata Hjorta}
 \label{roz_cecha_hjorth}
-Podobnie jak w rodziale \ref{roz_cecha_toz} na rysunkach przedstawiony został rozkład cech dla sygnałów target (niebieski) i sygnałów non-target (czerwony) dla odpowiednio dwóch, czterech i dziesięciu uśrednionych realizacji przy zastosowaniu transformaty Hjorta. W tym przypadku w odróżnieniu od filtru tożsamościowego już przy czterech uśrednionych realizacjach zachodzi pełna separacja zbiorów sygnałów target i non-target wykluczająca błędną interpretację decyzji w urządzeniu BCI.
+Podobnie jak w rodziale \ref{roz_cecha_toz} na rysunkach przedstawiony został rozkład cech dla sygnałów target (niebieski) i sygnałów non-target (czerwony) dla odpowiednio dwóch, czterech i dziesięciu uśrednionych realizacji przy zastosowaniu transformaty Hjorta. W tym przypadku w odróżnieniu od filtru tożsamościowego już przy czterech uśrednionych realizacjach zachodzi bardzo dobra separacja zbiorów sygnałów target i non-target względem ich rozrzutu wykluczająca błędną interpretację decyzji w urządzeniu BCI.
 
 \begin{figure}
 \centering
@@ -292,6 +306,7 @@ W przypadku CSP na rysunku \ref{cecha_csp_2} widać, że już przy dwóch uśred
 \label{cecha_csp_10}
 \end{figure}
 
+\FloatBarrier
 \section{Odległość Mahalanobisa}
 Na rysunku \ref{mahalanobis_pic} przedstawiono zależność odległości Mahalanobisa od liczby uśrednionych realizacji dla wszystkich rodzajów omawianych filtrów przestrzennych. Zgodnie z oczekiwaniami oraz widocznymi zależnościami przedstawionymi na wykresach w rozdziale \ref{porownanie_cech} widać, że najlepsze rezultaty osiągnięto dla CSP, gorsze dla transformaty Hjorta, a najgorsze dla filtru tożsamościowego. 
 
