@@ -141,7 +141,7 @@ W celu osiągnięcia jak najlepszych rezultatów cechy były obliczane dla dwóc
 \section{Oprogramowanie}
 Oprogramowanie wykorzystane do wykonania symulacji i obliczeń zostało w całości napisane w języku Python~2{.}7. Do obliczeń numerycznych użyto pakietów NumPy~1{.}7{.}1 oraz SciPy~0{.}12{.}0 natomiast do wykonania wykresów pakiet Matplotlib~1{.}3{.}0.
 
-Całość kodu zamieszczono w repozytorium systemu kontroli wersji Git i udostępniono na licencji GPL v3 pod adresem: \url{http://git.nimitz.pl/p300-csp.git}. Wersja użyta w tej pracy oznaczona została tagiem o nazwie: licencjat-p300 i ID: c44f40ff280eb4010e93619f72aa605255c237d2 oraz podpisanym kluczem PGP: 2048R/18C35B1E.
+Całość kodu zamieszczono w repozytorium systemu kontroli wersji Git i udostępniono na licencji GPL v3 pod adresem: \url{http://git.nimitz.pl/p300-csp.git}. Wersja użyta w tej pracy oznaczona została tagiem o nazwie: licencjat-p300 i ID: 9eb1ed41ac3450438d7c561807a6c7d3060c204c oraz podpisanym kluczem PGP: 2048R/18C35B1E.
 
 \chapter{Dane}
 Dane do analizy opisanych metod były zbierane podczas sesji kalibracyjnej, w~której osoba badana patrzyła się na jeden z~ośmiu losowo zapalających się kwadratów. Dzięki temu zebrane dane opatrzone są~informacją, czy należą do~grupy target, w~przypadku zapalenia się obserwowanego pola, czy non-target w~pozostałych przypadkach.
@@ -258,7 +258,7 @@ Zgodnie z oczekiwaniami separacja obydwu zbiorów rośnie wraz ze zwiększaniem 
 
 \subsection{Transformata Hjorta}
 \label{roz_cecha_hjorth}
-Podobnie jak w rodziale \ref{roz_cecha_toz} na rysunkach przedstawiony został rozkład cech dla sygnałów target (niebieski) i sygnałów non-target (czerwony) dla odpowiednio dwóch, czterech i dziesięciu uśrednionych realizacji przy zastosowaniu transformaty Hjorta. W tym przypadku w odróżnieniu od filtru tożsamościowego już przy czterech uśrednionych realizacjach zachodzi bardzo dobra separacja zbiorów sygnałów target i non-target względem ich rozrzutu wykluczająca błędną interpretację decyzji w urządzeniu BCI.
+Podobnie jak w rodziale \ref{roz_cecha_toz} na rysunkach \ref{cecha_hjprth_2}, \ref{cecha_hjprth_4}, \ref{cecha_hjprth_10} przedstawiony został rozkład cech dla sygnałów target (niebieski) i sygnałów non-target (czerwony) dla odpowiednio dwóch, czterech i dziesięciu uśrednionych realizacji przy zastosowaniu transformaty Hjorta. W tym przypadku w odróżnieniu od filtru tożsamościowego już przy czterech uśrednionych realizacjach zachodzi bardzo dobra separacja zbiorów sygnałów target i non-target względem ich rozrzutu wykluczająca błędną interpretację decyzji w urządzeniu BCI.
 
 \begin{figure}
 \centering
