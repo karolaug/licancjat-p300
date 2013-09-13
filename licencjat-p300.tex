@@ -3,9 +3,7 @@
 \usepackage[MeX]{polski}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-%\usepackage{afterpage}
 \usepackage{rotating}
-%\usepackage{subfigure}%
 \usepackage{polski}
 \usepackage{natbib}
 \usepackage{indentfirst}
@@ -15,13 +13,11 @@
 \usepackage{amsmath}
 \usepackage{antpolt}
 \usepackage[T1]{fontenc}
-\usepackage[draft]{todonotes}
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{chngcntr}
 \usepackage[font={small,it}]{caption}
 \usepackage[section]{placeins}
-
 
 \author{ Karol Auguštin }
 \nralbumu{ 249476 }
@@ -33,9 +29,6 @@
 \specjalnosc{Neuroinformatyka}
 \date{Warszawa, Wrzesień 2013}
 \keywords{P300, filtry przestrzenne, interfejsy mózg -- komputer, CSP} 
-
-%\bibliographystyle{elsart-harv}
-%\bibliographystyle{unsrt}
 \bibliographystyle{apalike}
 
 \begin{document}
@@ -45,7 +38,6 @@
 \par W pracy zaprezentowano i przetestowano doświadczalnie zastosowanie filtrów przestrzennych w detekcji wystąpienia potencjału P300 w urządzeniach BCI. Uzyskane rezultaty potwierdzają skuteczność stosowania tych filtrów w algorytmach detekcji potencjałów wywołanych w czasie rzeczywistym.
 \end{abstract}
 \tableofcontents
-
 
 \chapter{Wstęp}
 \section{Potencjały wywołane}
@@ -70,7 +62,7 @@ Rozwój urządzeń umożliwiających komunikację ludzi z~komputerami opiera si�
 Kolejnym aspektem zastosowania systemów BCI w~postaci, w~jakiej istnieją one dzisiaj jest pomoc osobom niepełnosprawnym, w~szczególności sparaliżowanym, pozbawionym możliwości kontaktu ze~światem zewnętrznym za pośrednictwem mięśni. Urządzenia BCI Appliance tworzone i~rozwijane na~wydziale Fizyki Uniwersytetu Warszawskiego już dzisiaj dają taką możliwość \citep{obci}.
 Ponadto na świecie rozwijanych jest wiele projektów oprogramowania BCI takich jak OpenVibe~\citep{renard2010}, Pyff \citep{venthur2008} czy BCI2000 \citep{schalk2004}.
 
-Opierając się na znanych mechanizmach działania mózgu umożliwiają wprowadzanie informacji do komputera jedynie za pomocą analizy sygnału EEG związanego z koncentracją uwagi na określonych bodźcach. Jednym z paradygmatów, na którym opiera się ten system jest właśnie rejestracja i~analiza potencjału P300.
+Opierając się na znanych mechanizmach działania mózgu umożliwiają wprowadzanie informacji do komputera jedynie za pomocą analizy sygnału EEG, związanego z koncentracją uwagi na określonych bodźcach. Jednym z paradygmatów, na którym opiera się ten system jest właśnie rejestracja i~analiza potencjału P300.
 
 \section{Cel pracy}
 Celem pracy jest zbadanie oraz zaprezentowanie jak~zastosowanie filtrów przestrzennych wpływa na~możliwość wykrywania występowania potencjału P300. Opracowanie
@@ -78,11 +70,11 @@ algorytmu i jego sprawdzenie w zastosowaniu występującym w maszynach BCI. Przy
 
 \chapter{Metodologia}
 Potencjał P300 występujący w~sygnale EEG w~reakcji na~oczekiwany przez pacjenta bodziec ma złożoną charakterystykę, czyniąc go trudnym do automatycznej detekcji. Podstawowym problemem jest mała amplituda zjawiska na tle innych aktywności mózgu widocznych w sygnale EEG oraz duża zmienność osobnicza i zależność od wielu czynników takich jak wiek i płeć osoby badanej, czas od ostatniego posiłku, rodzaj oraz trudność w zauważeniu bodźca oraz motywacja~\citep{chudzik2004}.
-Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z~występowaniem interesującego nas zjawiska jest modelowana jako szum nieskorelowany o~średniej zero, zatem ulega uśrednieniu do zera, a~interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do~zastosowania w~systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Niski stosunek sygnału do szumu dla potencjału P300 bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować liczbę niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywności mózgu, nie związanych z bodźcem podawanym pacjentowi.
+Jedyną metodą uzyskania widocznego gołym okiem potencjału bez stosowania skomplikowanego aparatu matematycznego jest uśrednienie wielu realizacji eksperymentu. W takim przypadku aktywność mózgu nie związana z~występowaniem interesującego nas zjawiska jest modelowana jako szum nieskorelowany o~średniej zero, zatem w procesie uśredniania jego wpływ maleje, a~interesująca nas, powtarzająca się dla każdej realizacji aktywność staje się widoczna. Takie podejście, poprawne w przypadku diagnostyki medycznej, niestety nie jest możliwe do~zastosowania w~systemach BCI, gdyż obniżyłoby skuteczność takiego systemu wymuszając na użytkowniku wielokrotne powtarzanie tej samej decyzji. Niski stosunek sygnału do szumu dla potencjału P300 bardzo utrudnia jego wykrycie przy użyciu jednej realizacji. Aby zminimalizować liczbę niezbędnych powtórzeń występowania bodźca zaczęto stosować różnego rodzaju metody mające na celu wyeksponowanie go z szumu pozostałych aktywności mózgu, nie związanych z bodźcem podawanym pacjentowi.
 
-Do najprostszych metod stosowanych w pierwszej kolejności należą przede wszystkim filtrowanie dolnoprzepustowe.
+Najprostszą metodą stosowaną w pierwszej kolejności jest przede wszystkim filtrowanie dolnoprzepustowe.
 
-Bardziej zaawansowanymi metodami jest zaprojektowanie odpowiednich filtrów przestrzennych, mających na celu poprawę stosunku sygnału do szumu korzystając z~różnicy w rozkładzie przestrzennym szumu i~interesującej nas aktywności. Przykłady takich filtrów zostaną przedstawione w~kolejnych paragrafach.
+Bardziej zaawansowaną metodą jest zastosowanie odpowiednich filtrów przestrzennych, mających na celu poprawę stosunku sygnału do szumu korzystając z~różnicy w rozkładzie przestrzennym szumu i~interesującej nas aktywności. Przykłady takich filtrów zostaną przedstawione w~kolejnych paragrafach.
 
 \section{Filtry przestrzenne}
 Filtry przestrzenne poprawiają stosunek sygnału do szumu wykorzystując różny rozkład przestrzenny składowej będącej sygnałem i~składowej będącej szumem, czyli sygnałem nie~zawierającym składowych istotnych z punktu widzenia badanego zagadnienia.
@@ -232,9 +224,6 @@ Na rysunkach \ref{cecha_toz_2}, \ref{cecha_toz_4}, \ref{cecha_toz_10} zaprezento
 
 Zgodnie z oczekiwaniami separacja obydwu zbiorów rośnie wraz ze zwiększaniem się liczby uśrednionych realizacji. Niestety zarówno dla dwóch jak i czterech uśrednionych realizacji odległość pomiędzy zbiorami target i non-target jest niewielka względem rozrzutu tych zbiorów co przy zastosowaniu tego algorytmu w urządzeniu BCI prowadziłoby do błędnej interpretacji decyzji użytkownika.
 
-
-%nie jest możliwe jednoznaczne oddzielenie zbiorów co przy zastosowaniu tego algorytmu w urządzeniu BCI prowadziłoby do błędnej interpretacji decyzji użytkownika.
-
 \begin{figure}
 \centering
 \includegraphics[scale=0.55, trim=10mm 15mm 10mm 18mm, clip=True]{pics/cecha_toz_2.png}
@@ -320,7 +309,7 @@ Na rysunku \ref{mahalanobis_pic} przedstawiono zależność odległości Mahalan
 \chapter{Dyskusja i Wnioski}
 Filtry przestrzenne są obecnie szeroko stosowane w detekcji potencjałów wywołanych oraz wyobrażeń ruchowych w oprogramowaniu BCI takich jak OpenBCI \citep{obci_conf}, OpenVibe \citep{renard2010}. Ze względu na wymaganą kalibrację oraz złożoność obliczeniową procesu wyznaczania macierzy przejścia nie jest możliwe zastosowanie CSP w każdym paradygmacie BCI.
 
-Z przedstawionych rezultatów jasno wynika, że zastosowanie filtrów przestrzennych znacząco poprawia wykrywalność wzrokowego potencjału P300 w sygnale EEG. Możliwość zastosowania CSP w praktyce potwierdziła wystawa Mózg 2013, na której prezentowane urządzenie BCI zostało przetestowane przez około trzystu zwiedzających z bardzo dobrymi rezultatami. W wykrywaniu potencjału P300 oraz SSVEP wykorzystano filtr CSP w identycznej postaci jak przedstawiony w tej pracy.
+Z przedstawionych rezultatów jasno wynika, że zastosowanie filtrów przestrzennych znacząco poprawia wykrywalność wzrokowego potencjału P300 w sygnale EEG. Możliwość zastosowania CSP w praktyce potwierdziła wystawa Mózg 2013 (\url{http://mozg2013.pl/}), na której prezentowane urządzenie BCI zostało przetestowane przez około trzystu zwiedzających z bardzo dobrymi rezultatami. W wykrywaniu potencjału P300 oraz SSVEP wykorzystano filtr CSP w identycznej postaci jak przedstawiony w tej pracy.
 
 \bibliography{biblio}
 \end{document}
